@@ -1,0 +1,142 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+
+    
+    <package name="default" namespace="/"   extends="struts-default">
+        
+        <action name="registro" class="controlador.UsuarioAction" method="insertar">
+            <result name="success"> registro_ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+        
+        <action name="listo" class="controlador.Carrito" method="execute">
+            <result name="success"> index.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+        
+        <action name="categorias" class="controlador.CategoriasAction" method="obtenerCategorias">
+            <result name="success">services.jsp</result>
+            <result name="error"> 404.jsp</result>             
+        </action>  
+        
+         <action name="eliminaReserva" class="controlador.ReservaAction" method="eliminar">
+            <result type="redirectAction">categorias</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+         <action name="listarReservas" class="controlador.ReservaAction" method="lista">
+            <result name="success">report-service.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+         <action name="listarVentas" class="controlador.ReservaAction" method="lista2">
+            <result name="success">report-ventas.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+         <action name="comprar" class="controlador.Carrito" method="insertar">
+            <result name="success">service-ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+        
+         <action name="comprar2" class="controlador.Carrito" method="insertar2">
+            <result name="success">producto-ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+          
+         <action name="listardetalle" class="controlador.ReservaAction" method="ListDetalle">
+            <result name="success">service-ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+         <action name="listardetalle2" class="controlador.ReservaAction" method="ListDetalle2">
+            <result name="success">producto-ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+        <action name="reservar" class="controlador.ReservaAction" method="reservar">
+            <result type="redirectAction">categorias</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+        <action name="productos" class="controlador.CategoriasAction" method="obtenerProductos">
+            <result name="success">shop-list.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        <action name="busqueda" class="controlador.Producto" method="buscar">
+            <result name="success">shop-list.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+        <action name="opinion" class="controlador.OpinionAction" method="insertar">
+            <result type="redirectAction">
+                <param name="actionName">detalle</param>
+                <param name="producto">${producto}</param>
+            </result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+        <action name="carrito" class="controlador.Carrito" method="execute">
+            <result name="success">shop-cart.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action> 
+         
+        <action name="servicio" class="controlador.Carrito" method="execute">
+            <result name="success">shop-service.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action> 
+         
+        <action name="detalle" class="controlador.Producto" method="obtenerProducto">
+            <result name="success">shop-detail.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>  
+        
+        <action name="Inicio" class="controlador.UsuarioAction" method="login">
+            <result name="success">   
+                index.jsp   
+            </result>            
+            <result name="error">login.jsp</result>
+        </action>         
+    </package>
+    
+
+    
+    
+    <package name="dinamico" extends="json-default" >
+        <interceptors>
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="json">
+                    <param name="enableSMD">true</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="defaultStack" />
+        
+        
+        <action name="add_to_cart" class="controlador.Carrito" method="add_to_cart">            
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>           
+        </action>
+        <action name="add_to_car" class="controlador.Carrito" method="add_to_car">            
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>           
+        </action>
+        
+        <action name="add_to_reserv" class="controlador.Carrito" method="add_to_reserv">            
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>           
+        </action>
+        <action name="del_to_car" class="controlador.Carrito" method="eliminarArt">            
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>           
+        </action>
+        <action name="comprobar" class="controlador.ReservaAction" method="comprobarReserva">            
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>           
+        </action>
+    </package>
+    
+</struts>
