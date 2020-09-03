@@ -50,7 +50,7 @@ public class ItemsDAO extends ConexionPSQL {
     public void obtenerItems(int id,String busca) throws SQLException {
         listaItems.clear();
         abrirConexion();
-        sentencia = conexion.prepareStatement("select * from items where idtipo=? and nombre ilike ? order by idcategorias");
+        sentencia = conexion.prepareStatement("select * from items where idtipo=? and nombre like ? order by idcategorias");
         sentencia.setInt(1, id);
         sentencia.setString(2, busca+"%");
         resultado = sentencia.executeQuery();
@@ -76,7 +76,7 @@ public class ItemsDAO extends ConexionPSQL {
     public void obtenerRelacionados(int id, int idc) throws SQLException {
         listaItems.clear();
         abrirConexion();
-        sentencia = conexion.prepareStatement("SELECT * FROM items where idtipo=? and idcategorias=? ORDER BY random() LIMIT 3");
+        sentencia = conexion.prepareStatement("SELECT * FROM items where idtipo=? and idcategorias=? ORDER BY rand() LIMIT 3");
         sentencia.setInt(1, id);
         sentencia.setInt(2, idc);
         resultado = sentencia.executeQuery();

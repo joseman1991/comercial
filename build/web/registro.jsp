@@ -1,6 +1,6 @@
 <%-- 
     Document   : registro
-    Created on : 09/07/2018, 16:15:30
+    Created on : 09/07/2020, 16:15:30
     Author     : Abigail
 --%>
 
@@ -49,7 +49,7 @@
                 <div class="header-inner">
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="Beauty" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/logo.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -198,7 +198,6 @@
                             <%
                                 if (user != null) { %>                                
                             <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
                             </s:if>
                             <s:else>
                                 <s:url action="eliminaReserva" var="el">
@@ -208,7 +207,6 @@
                             </s:else>
 
                             <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
                             <%}%>
 
 
@@ -232,7 +230,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -465,10 +463,10 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                    <h3>Acerca de Beauty Center</h3>
-                                    <p><strong>BEAUTY CENTER</strong> es una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
+                                   <h3>Acerca de Comercial Antony</h3>
+                                   <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece prodcutos de <strong> primera necesidad y licoreria</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
-                                        <strong>productos y servicios</strong> que ofrecemos.</p>
+                                        <strong>productos</strong> que ofrecemos.</p>
                                 </div>
                                 <!-- BOTTOM TEXT : end -->
 
@@ -479,7 +477,7 @@
                                 <div class="bottom-subscribe various-content">
 
                                     <h3>CONTACTO</h3>
-                                    <p>Contactanos directamente en nuestro <a href="mailto:beautycenterspabby@gmail.com">Email</a>.</p>
+                                    <p>Contactanos directamente en nuestro <a href="mailto:antononystore.ec@gmail.com">Email</a>.</p>
 
 
                                 </div>
@@ -509,8 +507,6 @@
                                 <nav class="footer-menu">
                                     <ul>
                                         <li><a href="index.jsp">Inicio</a></li>
-                                        <li><a href="services.jsp">Servicio</a></li>
-                                        <li><a href="documentation.jsp">Productos</a></li>
                                     </ul>
                                 </nav>
                                 <!-- FOOTER MENU : end -->
@@ -520,7 +516,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>BEAUTY CENTER. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

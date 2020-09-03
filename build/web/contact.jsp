@@ -43,7 +43,7 @@
                 <div class="header-inner">
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="Beauty" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/log.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -79,14 +79,14 @@
 
                                         <li><a href="gallery.jsp">Galería</a></li>
                                         <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>                              
+                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <span><a href="<s:property value="#urlTagPro"/>">Tienda</a></span>
                                     <ul class="sub-menu">
                                         <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
-                                        <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>                                       
+                                        <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
                                     </ul>
                                 </li>
 
@@ -188,25 +188,7 @@
                         <button class="header-panel-toggle" type="button"><i class="fa"></i></button>
 
                         <!-- HEADER RESERVATION : begin -->
-                        <div class="header-reservation">
-                            <%
-                                if (user != null) { %>                                
-                            <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
-                            </s:if>
-                            <s:else>
-                                <s:url action="eliminaReserva" var="el">
-                                    <s:param name="idreserva">1</s:param>
-                                </s:url>
-                                <a  href="<s:property value="#el"/>" class="c-button">Eliminar Reservacion</a>
-                            </s:else>
-
-                            <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
-                            <%}%>
-
-
-                        </div>
+                       
                         <!-- HEADER RESERVATION : end -->
 
                         <!-- HEADER CONTACT : begin -->
@@ -226,7 +208,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -235,7 +217,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -329,7 +311,7 @@
                                             <i class="ico fa fa-map-marker"></i>
                                             <div class="icon-block-inner">
                                                 <p>
-                                              <strong>BEAUTY CENTER</strong></p>
+                                              <strong>COMERCIAL ANTHONY</strong></p>
                                                 <p>Horarios de atencion.<br>
                                                 </p>
                                             </div>
@@ -397,7 +379,7 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                    <h3>Acerca de Beauty Center</h3>
+                                    <h3>Acerca de Comercial Antony</h3>
                                     <p><strong>Somos </strong>una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
                                         <strong>productos y servicios</strong> que ofrecemos.</p>
@@ -451,7 +433,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>COMERCIAL ANTHONY. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

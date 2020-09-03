@@ -11,7 +11,7 @@
         <s:set name="user" value="#session['usuario']"/>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inicio | Beauty Center  </title>
+        <title>Inicio | Comercial Antony  </title>
         <link rel="shortcut icon" href="images/favicon.ico">
         <!-- GOOGLE FONTS : begin -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700%7cMontserrat:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -65,7 +65,7 @@
                 <div class="header-inner">
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="Beauty" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/logo.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -87,7 +87,6 @@
                                             <s:param name="page">1</s:param>
                                         </s:url>                                            
 
-                                        <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>  
 
                                         <s:if test="#user!=null">
                                             <s:url action="listarReservas" var="listarR">
@@ -101,13 +100,10 @@
                                                 </s:param>
                                             </s:url>
 
-                                            <li><a href="<s:property value="#listarR"/>">Reporte de Reservas</a></li>
                                             <li><a href="<s:property value="#listarC"/>">Reporte de Compras</a></li>
                                             </s:if>
 
-                                        <li><a href="gallery.jsp">Galería</a></li>
                                         <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>                              
                                     </ul>
                                 </li>
                                 <li>
@@ -220,7 +216,7 @@
                             <%
                                 if (user != null) { %>                                
                             <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
+                              
                             </s:if>
                             <s:else>
                                 <s:url action="eliminaReserva" var="el">
@@ -230,7 +226,7 @@
                             </s:else>
 
                             <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
+                           
                             <%}%>
 
 
@@ -254,7 +250,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -263,7 +259,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTONHY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -316,14 +312,14 @@
                 <div class="slide-list">
 
                     <!-- SLIDE 1 : begin -->
-                    <div class="slide slide-1 m-bg-align-right" data-label="Bienvenido a BEAUTY CENTER" style="background-image: url( 'images/slide_01.jpg' );">
+                    <div class="slide slide-1 m-bg-align-right" data-label="Bienvenido a COMERCIAL ANTONHY" style="background-image: url( 'images/per.jpg' );">
                         <div class="slide-bg">
                             <div class="container">
                                 <div class="slide-inner">
                                     <div class="slide-content various-content textalign-left valign-middle">
 
-                                        <h1>Bienvenido<br>to BEAUTY CENTER!</h1>
-                                        <h3>Más que un Spa,<br>es el lugar indicado, para relajarte</h3>
+                                        <h1>Bienvenido<br>to COMERCIAL ANTONHY!</h1>
+                                        <h3 style="color: white">Más que una tienda,<br>es el lugar indicado, para ahorrar</h3>
 
                                     </div>
                                 </div>
@@ -333,14 +329,14 @@
                     <!-- SLIDE 1 : end -->
 
                     <!-- SLIDE 2 : begin -->
-                    <div class="slide slide-2 m-bg-align-left" data-label="20% de descuento en masajes" style="background-image: url('images/slide_02.jpg' );">
+                    <div class="slide slide-2 m-bg-align-left" data-label="Licores" style="background-image: url('images/h.jpg' );">
                         <div class="slide-bg">
                             <div class="container">
                                 <div class="slide-inner">
                                     <div class="slide-content various-content textalign-right valign-middle">
 
-                                        <h2>20% de descuento<br>en todos los masajes</h2>
-                                        <h3>¡Todos los viernes!<br><a href="ajax/reservation-form.php" class="m-open-ajax-modal">Haz una Reservación</a></h3>
+                                        <h2>Los mejores<br>licores</h2>
+                                        <h3>¡Todos los viernes el mejor stock!<br></h3>
 
                                     </div>
                                 </div>
@@ -350,14 +346,14 @@
                     <!-- SLIDE 2 : end -->
 
                     <!-- SLIDE 3 : begin -->
-                    <div class="slide slide-3 m-bg-align-right" data-label="Nuestra tienda Online" style="background-image: url( 'images/slide_03.jpg' );">
+                    <div class="slide slide-3 m-bg-align-right" data-label="Nuestra tienda Online" style="background-image: url( 'images/h2.jpg' );">
                         <div class="slide-bg">
                             <div class="container">
                                 <div class="slide-inner">
                                     <div class="slide-content various-content textalign-left valign-middle">
 
                                         <h2>Tienda<br>Online</h2>
-                                        <h3><a href="<s:property value="#urlTagPro"/>">Mejora tu look</a> con Nuestros Productos</h3>
+                                        <h3 style="color: white"><a href="<s:property value="#urlTagPro"/>">Encuentra de todo</a> con Nuestros Productos</h3>
 
                                     </div>
                                 </div>
@@ -378,131 +374,18 @@
                     <div class="various-content">
 
                         <!-- SERVICES SECTION : begin -->
-                        <section>
-
-                            <!-- SECTION HEADER : begin -->
-                            <header>
-                                <div class="container">
-                                    <h2>Nuestros servicios</h2>
-                                    <p class="subtitle">Ofrecemos una amplia gama de servicios de belleza</p>
-                                    <p class="more"><a href="<s:property value="#urlTag" />" class="c-button m-type-2">Ver todos nuestros servicios</a></p>
-                                </div>
-                            </header>
-                            <!-- SECTION HEADER : end -->
-
-                            <!-- SERVICE LIST : begin -->
-                            <div class="c-service-list m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
-                                <div class="container">
-                                    <div class="service-list-inner">
-                                        <div class="service-list-item">
-
-                                            <!-- SERVICE : begin -->
-                                            <div class="c-service">
-                                                <div class="service-image">
-                                                    <a href="services.jsp#cosmetics"><img src="images/service_01.jpg" alt=""></a>
-                                                </div>
-                                                <h3 class="service-title"><a href="services.jsp#cosmetics">Cosméticos</a></h3>
-                                                <div class="service-description">
-                                                    <p>Faciales, Cejas y pestañas, Microdermabrasión, Tratamientos para el acné, Antienvejecimiento</p>
-                                                </div>
-                                            </div>
-                                            <!-- SERVICE : end -->
-
-                                        </div>
-                                        <div class="service-list-item">
-
-                                            <!-- SERVICE : begin -->
-                                            <div class="c-service">
-                                                <div class="service-image">
-                                                    <a href="services.jsp#hairdressing"><img src="images/service_02.jpg" alt=""></a>
-                                                </div>
-                                                <h3 class="service-title"><a href="services.jsp#hairdressing">Peluquería</a></h3>
-                                                <div class="service-description">
-                                                    <p>Lavado, Cortes y Acabados, Secado, Titurarado y Resaltado, Peluquería de Noche</p>
-                                                </div>
-                                            </div>
-                                            <!-- SERVICE : end -->
-
-                                        </div>
-                                        <div class="service-list-item">
-
-                                            <!-- SERVICE : begin -->
-                                            <div class="c-service">
-                                                <div class="service-image">
-                                                    <a href="services.jsp#body-treatments"><img src="images/service_03.jpg" alt=""></a>
-                                                </div>
-                                                <h3 class="service-title"><a href="services.jsp#body-treatments">Tratamientos corporales</a></h3>
-                                                <div class="service-description">
-                                                    <p>Envolturas corporales, Tratamientos de Exfoliación Corporal, Tratamientos para la Celulitis, Láser Lipo, Depilación</p>
-                                                </div>
-                                            </div>
-                                            <!-- SERVICE : end -->
-
-                                        </div>
-                                        <div class="service-list-item">
-
-                                            <!-- SERVICE : begin -->
-                                            <div class="c-service">
-                                                <div class="service-image">
-                                                    <a href="services.jsp#massages"><img src="images/service_04.jpg" alt=""></a>
-                                                </div>
-                                                <h3 class="service-title"><a href="services.jsp#massages">Masajes</a></h3>
-                                                <div class="service-description">
-                                                    <p>Masajes exóticos, masaje sueco, masaje con piedras calientes, masaje con aromaterapia</p>
-                                                </div>
-                                            </div>
-                                            <!-- SERVICE : end -->
-
-                                        </div>
-                                        <div class="service-list-item">
-
-                                            <!-- SERVICE : begin -->
-                                            <div class="c-service">
-                                                <div class="service-image">
-                                                    <a href="services.jsp"><img src="images/service_05.jpg" alt=""></a>
-                                                </div>
-                                                <h3 class="service-title"><a href="services.jsp">Uñas</a></h3>
-                                                <div class="service-description">
-                                                    <p>Arte de uñas, Tratamiento de cera de parafina, Manicura Shellac, Uñas de gel, Manicura francesa</p>
-                                                </div>
-                                            </div>
-                                            <!-- SERVICE : end -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- SERVICE LIST : end -->
-
-                        </section>
+                       
                         <!-- SERVICES SECTION : end -->
 
                         <!-- GALLERY SECTION : begin -->
                         <section>
 
                             <!-- SECTION HEADER : begin -->
-                            <header>
-                                <div class="container">
-                                    <h2>Galería</h2>
-                                    <p class="subtitle">Mira cómo se ve dentro de nuestro estudio</p>
-                                    <p class="more"><a href="gallery.jsp" class="c-button m-type-2">Entrar a la galería</a></p>
-                                </div>
-                            </header>
+                           
                             <!-- SECTION HEADER : end -->
 
                             <!-- GALLERY : begin -->
-                            <div class="c-gallery m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
-                                <div class="thumb-list">
-                                    <div class="thumb"><a href="images/gallery_01.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_01.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_02.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_02.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_03.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_03.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_04.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_04.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_05.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_05.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_06.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_06.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_07.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_07.jpg" alt=""></a></div>
-                                    <div class="thumb"><a href="images/gallery_08.jpg" class="lightbox" data-lightbox-group="gallery"><img src="images/gallery_08.jpg" alt=""></a></div>
-                                </div>
-                            </div>
+                            
                             <!-- GALLERY : end -->
 
                         </section>
@@ -537,7 +420,7 @@
                                                 <div class="testimonial-inner">
                                                     <p class="testimonial-portrait"><span><img src="images/client_01.jpg" alt=""></span></p>
                                                     <blockquote>
-                                                        <p>Me siento muy satisfecha con los servicios que ofrece BEAUTY CENTER, los masajes son los máximo, realizados por profesionales. Te recomiendo que no lo pienses dos veces y elige BEAUTY CENTER.</p>
+                                                        <p>Me siento muy satisfecha con los servicios que ofrece COMERCIAL ANTONHY, los licores son los máximo. Te recomiendo que no lo pienses dos veces y elige COMERCIAL ANTONHY.</p>
                                                         <footer><strong>Floor Simons</strong>, Profesora</footer>
                                                     </blockquote>
                                                 </div>
@@ -552,7 +435,7 @@
                                                 <div class="testimonial-inner">
                                                     <p class="testimonial-portrait"><span><img src="images/client_02.jpg" alt=""></span></p>
                                                     <blockquote>
-                                                        <p>Justo lo que estaba buscando desde mucho tiempo, los tratamientos de belleza que ofrece BEAUTY CENTER, son lo máximo, nunca me había sentido tambien. Sin lugar a dudas este Spa es lo mejor.</p>
+                                                        <p>Justo lo que estaba buscando desde mucho tiempo, los productos que ofrece COMERCIAL ANTONHY, son lo máximo, nunca me había sentido tambien. Sin lugar a dudas este comercial es lo mejor.</p>
                                                         <footer><strong>Nikki Neil</strong>, Contadora</footer>
                                                     </blockquote>
                                                 </div>
@@ -567,7 +450,7 @@
                                                 <div class="testimonial-inner">
                                                     <p class="testimonial-portrait"><span><img src="images/client_03.jpg" alt=""></span></p>
                                                     <blockquote>
-                                                        <p>Un cabello hermoso, refleja refleja la belleza de una mujer, que buen lugar para cuidarlo, como lo es BEAUTY CENTER, además de ser un spa es el lugar indicado, para fortalecer y cuidar tu cabello.</p>
+                                                        <p>Los mejores precios, que buen lugar para cuidar tu dinero, como lo es COMERCIAL ANTONHY, es el lugar indicado, para encontrar de todo.</p>
                                                         <footer><strong>Tarja Lee</strong>, Deportista</footer>
                                                     </blockquote>
                                                 </div>
@@ -656,10 +539,10 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                    <h3>Acerca de Beauty Center</h3>
-                                    <p><strong>BEAUTY CENTER</strong> es una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
+                                    <h3>Acerca de Comercial Antony</h3>
+                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece productos de <strong>primera necesidad y licores</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
-                                        <strong>productos y servicios</strong> que ofrecemos.</p>
+                                        <strong>productos </strong> que ofrecemos.</p>
                                 </div>
                                 <!-- BOTTOM TEXT : end -->
 
@@ -670,7 +553,7 @@
                                 <div class="bottom-subscribe various-content">
 
                                     <h3>CONTACTO</h3>
-                                    <p>Contactanos directamente en nuestro <a href="mailto:beautycenterspabby@gmail.com">Email</a>.</p>
+                                    <p>Contactanos directamente en nuestro <a href="mailto:antononystore.ec@gmail.com">Email</a>.</p>
 
 
                                 </div>
@@ -711,7 +594,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>COMERCIAL ANTONHY. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

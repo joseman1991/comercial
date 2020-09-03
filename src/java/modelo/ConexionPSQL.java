@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class ConexionPSQL {
 
-    protected Connection conexion; 
+    protected Connection conexion;
     protected PreparedStatement sentencia;
     protected ResultSet resultado;
     protected CallableStatement procedimiento;
@@ -17,14 +17,14 @@ public class ConexionPSQL {
     protected void abrirConexion() throws SQLException {
 
         String url;
-        String usuario = ("postgres");
-        String clave = ("postgres");
+        String usuario = ("root");
+        String clave = ("");
         String BaseDeDatos = ("spa");
-        String puerto = ("5432");
+        String puerto = ("3308");
         String servidor = ("localhost");
         try {
-            Class.forName("org.postgresql.Driver");
-            url = "jdbc:postgresql://" + servidor + ":" + puerto + "/" + BaseDeDatos;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            url = "jdbc:mysql://" + servidor + ":" + puerto + "/" + BaseDeDatos+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             conexion = DriverManager.getConnection(url, usuario, clave);
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -47,8 +47,8 @@ public class ConexionPSQL {
     public String testConection(String baseDatos, String user, String clave, String host, String puerto) {
         String url;
         try {
-            Class.forName("org.postgresql.Driver");
-            url = "jdbc:postgresql://" + host + ":" + puerto + "/" + baseDatos;
+            Class.forName("com.mysql.jdbc.Driver");
+            url = "jdbc:mysql://" + host + ":" + puerto + "/" + baseDatos;
             try {
                 conexion = DriverManager.getConnection(url, user, clave);
                 return "Conexión Exitosa";

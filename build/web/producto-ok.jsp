@@ -183,7 +183,6 @@
                             <%
                                 if (user != null) { %>                                
                             <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
                             </s:if>
                             <s:else>
                                 <s:url action="eliminaReserva" var="el">
@@ -193,7 +192,6 @@
                             </s:else>
 
                             <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
                             <%}%>
                         </div>
                         <!-- HEADER RESERVATION : end -->

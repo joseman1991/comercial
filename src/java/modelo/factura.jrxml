@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b363eeb9-491c-4dd4-a0a6-b8669338572f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="11"/>
 	<parameter name="codfact" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -13,9 +13,9 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select to_char(v.idventa,'000000000')as numerofactura,'BEAUTY CENTER' AS razonsocial,'COMPRA DE ARTICULOS' AS concepto, 
-cantidad,dv.precio, i.nombre as descripcion ,(dv.precio*dv.iva/100) as iva, (cantidad*dv.precio) as subtotal, ROUND((dv.descuento*dv.precio/100)::numeric,2) as descuento, ((cantidad*dv.precio)+(dv.precio*dv.iva/100)-ROUND((dv.descuento*dv.precio/100)::numeric,2)) as total , fecha as fechafactura,
-(nombre1||' '||nombre2||' '||apellidop||' '|| apellidon) as razonsocia,u.dni as identificacion, direccion from ventas v 
+		<![CDATA[select  LPAD(v.idventa,9,'0')as numerofactura,'BEAUTY CENTER' AS razonsocial,'COMPRA DE ARTICULOS' AS concepto, 
+cantidad,dv.precio, i.nombre as descripcion ,(dv.precio*dv.iva/100) as iva, (cantidad*dv.precio) as subtotal, ROUND((dv.descuento*dv.precio/100),2) as descuento, ((cantidad*dv.precio)+(dv.precio*dv.iva/100)-ROUND((dv.descuento*dv.precio/100),2)) as total , fecha as fechafactura,
+CONCAT(nombre1,' ',nombre2,' ',apellidop,' ', apellidon) as razonsocia,u.dni as identificacion, direccion from ventas v 
 inner join detalleventa dv on v.idventa=dv.idventa
 inner join items i on i.iditem=dv.idtem 
 inner join usuarios u on u.nombreusuario=v.nombreusuario 
@@ -24,17 +24,25 @@ where v.idventa=$P{codfact};]]>
 	<field name="numerofactura" class="java.lang.String"/>
 	<field name="razonsocial" class="java.lang.String"/>
 	<field name="concepto" class="java.lang.String"/>
-	<field name="cantidad" class="java.lang.Integer"/>
-	<field name="precio" class="java.lang.Double"/>
-	<field name="descripcion" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="iva" class="java.lang.Double"/>
 	<field name="subtotal" class="java.lang.Double"/>
-	<field name="descuento" class="java.math.BigDecimal"/>
+	<field name="descuento" class="java.lang.Double"/>
 	<field name="total" class="java.lang.Double"/>
 	<field name="fechafactura" class="java.sql.Date"/>
 	<field name="razonsocia" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
-	<field name="direccion" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="subtotal_1" class="java.lang.Double" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{subtotal}]]></variableExpression>
 	</variable>

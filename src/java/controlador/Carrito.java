@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import modelo.DetalleCompra;
-import modelo.EnviarMensaje;
+//import modelo.EnviarMensaje;
 import modelo.Items;
 import modelo.ItemsDAO;
 import modelo.Reservas;
@@ -242,17 +242,17 @@ public class Carrito extends ActionSupport implements ModelDriven<Items> {
                     listaItems.subList(i, listaItems.size()).clear();
                 }
             }
-            EnviarMensaje enviarMensaje = new EnviarMensaje();
+//            EnviarMensaje enviarMensaje = new EnviarMensaje();
             Usuarios u = new UsuariosDAO().obtenerUsusario(reservas.getNombreusuario());
-            enviarMensaje.enviarConGMail(u.getCorreo(), "Reservación Realizada", "Se ha generado "
-                    + " una nueva factura");
+//            enviarMensaje.enviarConGMail(u.getCorreo(), "Reservación Realizada", "Se ha generado "
+//                    + " una nueva factura");
             cantidad = (int) session.getAttribute("cantidad");
             session.setAttribute("listaItems", listaItems);
             session.setAttribute("cantidadSer", 0);
             session.setAttribute("reserva", null);
             session.setAttribute("cantidad", cantidad);
 
-        } catch (SQLException | MessagingException | JRException | FileNotFoundException ex) {
+        } catch (SQLException | /*MessagingException | */JRException | FileNotFoundException ex) {
             Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
             mensaje = ex.getMessage();
             return ERROR;
@@ -280,16 +280,16 @@ public class Carrito extends ActionSupport implements ModelDriven<Items> {
                     listaItems.subList(i, listaItems.size()).clear();
                 }
             }
-            EnviarMensaje enviarMensaje = new EnviarMensaje();
+//            EnviarMensaje enviarMensaje = new EnviarMensaje();
             Usuarios u = new UsuariosDAO().obtenerUsusario(reservas.getNombreusuario());
-            enviarMensaje.enviarConGMail(u.getCorreo(), "Haz realizado la compra con éxito", "Se ha generado "
-                    + " una nueva factura");
+//            enviarMensaje.enviarConGMail(u.getCorreo(), "Haz realizado la compra con éxito", "Se ha generado "
+//                    + " una nueva factura");
             cantidad = (int) session.getAttribute("cantidadSer");
             session.setAttribute("listaItems", listaItems);
             session.setAttribute("cantidadSer", cantidad);
             session.setAttribute("cantidad", 0);
             session.setAttribute("elementos", 0);
-        } catch (SQLException | MessagingException | JRException | FileNotFoundException ex) {
+        } catch (SQLException | /*MessagingException | */ JRException | FileNotFoundException ex) {
             Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
             mensaje = ex.getMessage();

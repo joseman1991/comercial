@@ -83,9 +83,9 @@ public class ReservasDAO extends ConexionPSQL {
 
     public void insertar2(Reservas re, List<DetalleCompra> lista, String ruta) throws SQLException, JRException, FileNotFoundException {
         abrirConexion();
-        procedimiento = conexion.prepareCall("{call insertarventa(?)}");
-        procedimiento.setString(1, re.getNombreusuario());
-        resultado = procedimiento.executeQuery();
+        sentencia = conexion.prepareStatement("select insertarventa(?)");
+        sentencia.setString(1, re.getNombreusuario());
+        resultado = sentencia.executeQuery();
         if (resultado.next()) {
             re.setIdreserva(resultado.getInt(1));
         }

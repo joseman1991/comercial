@@ -1,0 +1,17 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: DANIELA SAUHING -->
+ 
+<struts>
+   
+    <package name="inicio" namespace="inicio"   extends="struts-default">
+          <action name="Inicio" class="controlador.UsuarioAction" method="login">
+            <result name="success">   
+                index.jsp   
+            </result>            
+            <result name="error">login.jsp</result>
+        </action>       
+    </package>
+</struts>
