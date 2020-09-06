@@ -1,25 +1,30 @@
+<%-- 
+    Document   : registro
+    Created on : 09/07/2020, 16:15:30
+    Author     : Abigail
+--%>
+
 <%@page import="java.util.List"%>
 <%@page import="modelo.DetalleCompra"%>
 <%@page import="modelo.Usuarios"%>
-<!DOCTYPE html>
-<%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
 <html>
     <head>
-        <s:set name="cantidad" value="#session['cantidad']"/>
-        <s:set name="reserva" value="#session['reserva']"/>
+
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shop | BeautySpot - A HTML5 Template for Beauty Salons</title>
+        <title>Registro | Beauty Center</title>
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <!-- GOOGLE FONTS : begin -->
+        <link href="library/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script type="text/javascript" src="library/js/jquery-1.9.1.min.js"></script> 
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700%7cMontserrat:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <!-- GOOGLE FONTS : end -->
 
         <!-- STYLESHEETS : begin -->
-        <link href="library/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script type="text/javascript" src="library/js/jquery-1.9.1.min.js"></script> 
         <link rel="stylesheet" type="text/css" href="library/css/style.css">
         <link rel="stylesheet" type="text/css" href="library/css/skin/default.css">
         <link rel="stylesheet" type="text/css" href="library/css/custom.css">
@@ -42,10 +47,9 @@
         <header id="header" class="m-animated">
             <div class="header-bg">
                 <div class="header-inner">
-
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="BeautySpot" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/logo.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -57,7 +61,7 @@
                             <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
                             <ul>
                                 <li class="m-active">
-                                    <span><a href="index.jsp">Incio</a></span>
+                                    <span><a href="index.jsp">Inicio</a></span>
                                 </li>
                                 <li>
                                     <span><a href="services.jsp">Sitio</a></span>
@@ -67,10 +71,21 @@
                                             <s:param name="page">1</s:param>
                                         </s:url>                                            
 
-                                        <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>                                       
+                                        <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>  
+
+                                        <s:if test="#user!=null">
+                                            <s:url action="listarReservas" var="listarR">
+                                                <s:param name="nombreusuario">
+                                                    <s:property value="#user.nombreusuario"/>
+                                                </s:param>
+                                            </s:url>
+
+                                            <li><a href="<s:property value="#listarR"/>">Reporte de Reservas</a></li>
+                                            </s:if>
+
                                         <li><a href="gallery.jsp">Galería</a></li>
                                         <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                        <li><a href="about-us.jsp">A cerca de nosotros</a></li>                              
+                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>                              
                                     </ul>
                                 </li>
                                 <li>
@@ -208,7 +223,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>COMERCIAL ANTHONY </strong><br>
+                                        <strong>BEAUTY CENTER </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -247,7 +262,6 @@
 
                     </div>
                     <!-- HEADER PANEL : end -->
-                    <!-- HEADER PANEL : end -->
 
                 </div>
             </div>
@@ -263,95 +277,152 @@
                 <!-- PAGE HEADER : begin -->
                 <div id="page-header">
                     <div class="container">
-                        <h1>Detalle de compras</h1>
+                        <h1>Actualizar usuarios</h1>
                         <ul class="breadcrumbs">
                             <li><a href="index.jsp">Inicio</a></li>
-                            <li><a href="shop-list.jsp">Compras</a></li>
-                            <li>Compras</li>
+                            <li>Registro</li>
                         </ul>
                     </div>
                 </div>
-
                 <!-- PAGE HEADER : begin -->
 
                 <div class="container">
-
                     <!-- PAGE CONTENT : begin -->
                     <div id="page-content">
+                        <div class="form-fields">
+                            <form class="default-form" action="actualizarCliente" method="post" id="form-registro">
+                                <div class="row">
 
-                        <!-- SHOP CART : begin -->
-                        <div class="shop-cart">
 
-                            <form class="default-form" action="comprar">
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label for="nombreusuario">Nombre de usuario<span>*</span></label>
+                                            <input type="text" placeholder="Nombre de Usuario" name="nombreusuario" value="<s:property value="usuarios.nombreusuario"/>" id="nu" readonly="">  
+                                            <div class="alert alert-danger collapse"   role="alert" id="nus">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
 
-                                <!-- CART TABLE : begin -->
-                                <table class="cart-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="image-col"></th>
-                                            <th class="title-col">Detalle</th>
-                                            <th class="price-col">Fecha</th>
-                                            <th class="quantity-col">Hora</th>
-                                            <th class="total-col">Total</th>                                            
-                                            <th class="total-col">Factura</th>                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>   
-                                        <s:iterator value="lista" var="list">
-                                            <tr>
-                                                <s:url action="listardetalle2" var="listarD">
-                                                    <s:param name="idreserva">
-                                                        <s:property value="idreserva"/>
-                                                    </s:param>
-                                                </s:url>                                        
-                                                <td class="product-image"></td>
-                                                <td><a href="<s:property value="#listarD"/>"><s:property value="detalle"/></a></td>
-                                                <td><s:property value="fechas"/></td>
-                                                <td><s:property value="hora"/></td>                                                     
-                                                <td><s:property value="getText('{0,number,#,##0.00}',{total})"/></td> 
-                                                <td> <a target="_blank" href="reports/ventas/<s:property value="idreserva"/>.pdf" class="c-button">ver factura</a>
-                                                </td> 
-                                            </tr>                                        
-                                        </s:iterator>
-                                    </tbody>
-                                </table>
+                                        <div class="form-field">
+                                            <label for="clave">Segundo nombre<span>*</span></label>
+                                            <input type="text" placeholder="Segundo nombre" name="nombre2"  value="<s:property value="usuarios.nombre2"/>" id="pn">
+                                            <div class="alert alert-danger collapse"  role="alert" id="pns">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+
+                                    </div>
 
 
 
 
-                                <!-- CART TABLE : end -->
-
-                                <!-- CART TOOLS : begin -->
-                                <div class="cart-tools">
-
-                                    <!-- CART COUPON : begin -->
-
-                                    <!-- CART COUPON : end -->
-
-                                    <!-- CART BUTTONS : begin -->
 
 
-                                    <!-- CART BUTTONS : end -->
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label for="clave">Primer nombre<span>*</span></label>
+                                            <input type="text" placeholder="Primer nombre" name="nombre1" value="<s:property value="usuarios.nombre1"/>" id="sn">
+                                            <div class="alert alert-danger collapse"  role="alert"  id="sns">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-field">
+                                            <label for="clave">Apellido Paterno<span>*</span></label>
+                                            <input type="text" placeholder="Apellido Paterno" name="apellidop" value="<s:property value="usuarios.apellidop"/>" id="ap">
+                                            <div class="alert alert-danger collapse"  role="alert" id="aps">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                    </div> 
+
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label for="clave">Apellido Materno<span>*</span></label>
+                                            <input type="text" placeholder="Apellido Materno" name="apellidon" value="<s:property value="usuarios.apellidon"/>" id="am">
+                                            <div class="alert alert-danger collapse"  role="alert" id="ams">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-field">
+                                            <label for="clave">Correo Electóronico<span>*</span></label>
+                                            <input type="email" class="m-required m-email" placeholder="Correo Electóronico"  value="<s:property value="usuarios.correo"/>" name="correo" id="corre">
+                                            <div class="alert alert-danger collapse"  role="alert" id="correos">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-field">
+                                            <label for="ced">Cedula<span>*</span></label>
+                                            <input type="text" placeholder="Cedula" name="dni" value="<s:property value="usuarios.dni"/>" id="ced">
+                                            <div class="alert alert-danger collapse"  role="alert" id="ceds">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                        <div class="form-field">
+                                            <label for="dir">Direccion<span>*</span></label>
+                                            <input type="text" class="m-required m-email" placeholder="Direccion" value="<s:property value="usuarios.direccion"/>" name="direccion" id="dir">
+                                            <div class="alert alert-danger collapse"  role="alert" id="dirs">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
-                                <!-- CART TOOLS : end -->
 
+
+
+
+
+                                <br>
+                                <div class="form-field">
+                                    <input type="hidden" name="idperfil"  value="<s:property value="usuarios.idperfil"/>">
+                                    <button class="submit-btn c-button" type="actualizarCliente" id="boto">Actualizar</button>
+                                </div>
                             </form>
-
-                            <!-- CART FOOTER : begin -->
-
-                            <!-- CART FOOTER : end -->
-
                         </div>
-                        <!-- SHOP CART : end -->
-
                     </div>
-                    <!-- PAGE CONTENT : end -->
+
 
                 </div>
+                <!-- PAGE CONTENT : end -->
 
             </div>
+
+
             <!-- CORE : end -->
+
             <!-- BOTTOM PANEL : begin -->
             <div id="bottom-panel">
                 <div class="bottom-panel-inner">
@@ -363,9 +434,9 @@
                                 <div class="bottom-text various-content">
 
                                     <h3>Acerca de Comercial Antony</h3>
-                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece productos de <strong>primera necesidad y licores</strong>. 
+                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece prodcutos de <strong> primera necesidad y licoreria</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
-                                        <strong>productos </strong> que ofrecemos.</p>
+                                        <strong>productos</strong> que ofrecemos.</p>
                                 </div>
                                 <!-- BOTTOM TEXT : end -->
 
@@ -406,8 +477,6 @@
                                 <nav class="footer-menu">
                                     <ul>
                                         <li><a href="index.jsp">Inicio</a></li>
-                                        <li><a href="services.jsp">Servicio</a></li>
-                                        <li><a href="documentation.jsp">Productos</a></li>
                                     </ul>
                                 </nav>
                                 <!-- FOOTER MENU : end -->
@@ -417,7 +486,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>COMERCIAL ANTHONY SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>BEAUTY CENTER. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 
@@ -429,6 +498,7 @@
                 </div>
             </footer>
             <!-- FOOTER : end -->
+
         </div>
         <!-- WRAPPER : end -->
 
@@ -438,8 +508,10 @@
         <script src="library/js/jquery.ba-outside-events.min.js" type="text/javascript"></script>
         <script src="library/js/owl.carousel.min.js" type="text/javascript"></script><!-- Carousel -->
         <script src="library/js/jquery.magnific-popup.min.js" type="text/javascript"></script><!-- Lightbox -->
+
         <script src="library/js/library.js" type="text/javascript"></script>
         <script src="library/js/scripts.js" type="text/javascript"></script>
+        <script src="library/js/validar.js" type="text/javascript"></script>
         <!-- SCRIPTS : end -->
 
     </body>

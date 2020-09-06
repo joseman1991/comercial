@@ -5,23 +5,27 @@
  */
 package modelo;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Abigail
  */
 public class Usuarios {
-    
-private String    nombreusuario ;
- private String clave ;
- private String nombre1 ;
- private String nombre2 ;
- private String apellidop ;
- private String apellidon ;
- private String correo;
- private String estado;
- private String imagen;
- private String direccion;
- private String dni;
+
+    private String nombreusuario;
+    private String clave;
+    private String nombre1;
+    private String nombre2;
+    private String apellidop;
+    private String apellidon;
+    private String correo;
+    private String estado;
+    private String imagen;
+    private String direccion;
+    private String dni;
+    private Perfiles perfil;
+    private int idperfil;
 
     public String getNombreusuario() {
         return nombreusuario;
@@ -94,10 +98,10 @@ private String    nombreusuario ;
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
- 
- public String getCompleto(){
-     return String.format("%s %s %s %s ", nombre1,nombre2,apellidop,apellidon);
- }
+
+    public String getCompleto() {
+        return String.format("%s %s %s %s ", nombre1, nombre2, apellidop, apellidon);
+    }
 
     public String getDireccion() {
         return direccion;
@@ -114,9 +118,28 @@ private String    nombreusuario ;
     public void setDni(String dni) {
         this.dni = dni;
     }
- 
- 
- 
+
+    public Perfiles getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfiles perfil) {
+        this.perfil = perfil;
+    }
+
+    public int getIdperfil() {
+        return idperfil;
+    }
+
+    public void setIdperfil(int idperfil) throws SQLException {
+        PerfilDAO p= new PerfilDAO();
+        perfil= new Perfiles();
+        perfil=p.obteneroPerfil(idperfil);
+        this.idperfil = idperfil;
+    }
+
+    
+    
     
     
 }

@@ -19,7 +19,7 @@ public class ConexionPSQL {
         String url;
         String usuario = ("root");
         String clave = ("");
-        String BaseDeDatos = ("spa");
+        String BaseDeDatos = ("comercial");
         String puerto = ("3308");
         String servidor = ("localhost");
         try {

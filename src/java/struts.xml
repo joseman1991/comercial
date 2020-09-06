@@ -13,46 +13,83 @@
             <result name="error"> 404.jsp</result>            
         </action>
         
+        <action name="registro_empleado" class="controlador.UsuarioAction" method="insertarEmpleado">
+            <result name="success"> registro_ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+        
+        <action name="registro_admin" class="controlador.UsuarioAction" method="insertarAdmin">
+            <result name="success"> registro_ok.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+        
         <action name="listo" class="controlador.Carrito" method="execute">
             <result name="success"> index.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>
+        
+        <action name="ver_admin" class="controlador.UsuarioAction" method="obtenerAdmin">
+            <result name="success">lista_admin.jsp</result>
+            <result name="error"> 404.jsp</result>             
+        </action>  
+        
+        <action name="editarUser" class="controlador.UsuarioAction" method="obtenerUserByUserName">
+            <result name="success">editar.jsp</result>
+            <result name="error"> 404.jsp</result>             
+        </action>  
+        
+        <action name="actualizarCliente" class="controlador.UsuarioAction" method="actualizar">
+            <result name="admin">lista_admin.jsp</result>
+            <result name="cliente">lista_clientes.jsp</result>
+            <result name="emppleado">lista_empleados.jsp</result>
+            <result name="error"> 404.jsp</result>             
+        </action>  
+        
+        <action name="ver_emp" class="controlador.UsuarioAction" method="obtenerEmpleados">
+            <result name="success">lista_empleados.jsp</result>
+            <result name="error"> 404.jsp</result>             
+        </action>  
+        
+        <action name="ver_client" class="controlador.UsuarioAction" method="obtenerClientes">
+            <result name="success">lista_clientes.jsp</result>
+            <result name="error"> 404.jsp</result>             
+        </action>  
         
         <action name="categorias" class="controlador.CategoriasAction" method="obtenerCategorias">
             <result name="success">services.jsp</result>
             <result name="error"> 404.jsp</result>             
         </action>  
         
-         <action name="eliminaReserva" class="controlador.ReservaAction" method="eliminar">
+        <action name="eliminaReserva" class="controlador.ReservaAction" method="eliminar">
             <result type="redirectAction">categorias</result>
             <result name="error"> 404.jsp</result>            
         </action>  
         
-         <action name="listarReservas" class="controlador.ReservaAction" method="lista">
+        <action name="listarReservas" class="controlador.ReservaAction" method="lista">
             <result name="success">report-service.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>  
         
-         <action name="listarVentas" class="controlador.ReservaAction" method="lista2">
+        <action name="listarVentas" class="controlador.ReservaAction" method="lista2">
             <result name="success">report-ventas.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>  
         
-         <action name="comprar" class="controlador.Carrito" method="insertar">
+        <action name="comprar" class="controlador.Carrito" method="insertar">
             <result name="success">service-ok.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>
         
-         <action name="comprar2" class="controlador.Carrito" method="insertar2">
+        <action name="comprar2" class="controlador.Carrito" method="insertar2">
             <result name="success">producto-ok.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>
           
-         <action name="listardetalle" class="controlador.ReservaAction" method="ListDetalle">
+        <action name="listardetalle" class="controlador.ReservaAction" method="ListDetalle">
             <result name="success">service-ok.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>  
-         <action name="listardetalle2" class="controlador.ReservaAction" method="ListDetalle2">
+        <action name="listardetalle2" class="controlador.ReservaAction" method="ListDetalle2">
             <result name="success">producto-ok.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>  

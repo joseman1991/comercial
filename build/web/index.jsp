@@ -45,10 +45,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <%                        if (user != null) {
                     %>
+                    <li><a href="#"><span class="fa fa-key"></span> Perfil ${usuario.perfil.perfil} </a></li>
                     <li><a href="#"><span class="fa fa-user"></span> ${usuario.nombre1} </a></li>
                     <li><a href="logout.jsp"><span class="fa fa-sign-out"></span> Cerrar Sesión</a></li>
                         <%} else {%>
-                    <li><a href="registro.jsp"><span class="fa fa-user"></span> Registrarse</a></li>
+                    <li><a href="registro.jsp"><span class="fa fa-user"></span> Registrarse</a></li>                     
                     <li><a href="login.jsp"><span class="fa fa-sign-in"></span> Iniciar Sesión</a></li>
 
                     <%}%>
@@ -83,6 +84,9 @@
                                     <span><a href="services.jsp">Sitio</a></span>
                                     <ul class="sub-menu">
                                         <s:url action="categorias" var="urlTag" />                                             
+                                        <s:url action="ver_admin" var="admin" />                                             
+                                        <s:url action="ver_emp" var="emp" />                                             
+                                        <s:url action="ver_client" var="client" />                                             
                                         <s:url action="productos" var="urlTagPro" >
                                             <s:param name="page">1</s:param>
                                         </s:url>                                            
@@ -100,10 +104,15 @@
                                                 </s:param>
                                             </s:url>
 
-                                            <li><a href="<s:property value="#listarC"/>">Reporte de Compras</a></li>
+                                            <li><a href="<s:property value="#listarC"/>">Mis compras compras</a></li>
                                             </s:if>
 
                                         <li><a href="registro.jsp">Registro de Clientes</a></li>
+                                        <li><a href="registro_admin.jsp">Registrar nuevo admin</a></li>
+                                        <li><a href="<s:property value="#admin"/>">Lista de administradores</a></li>
+                                        <li><a href="<s:property value="#emp"/>">Lista de empleados</a></li>
+                                        <li><a href="<s:property value="#client"/>">Lista de clientes</a></li>
+                                        <li><a href="registro_empleado.jsp">Registro de empleados</a></li>
                                     </ul>
                                 </li>
                                 <li>

@@ -150,7 +150,8 @@ public class Carrito extends ActionSupport implements ModelDriven<Items> {
             return ERROR;
         }
     }
-
+    
+  
     public String add_to_car() {
         listaItems = (List<DetalleCompra>) session.getAttribute("listaItems");
         cantidad = 0;

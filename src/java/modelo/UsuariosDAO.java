@@ -6,6 +6,8 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,68 @@ public class UsuariosDAO extends ConexionPSQL {
         sentencia = conexion.prepareStatement("INSERT INTO usuarios(\n"
                 + "            nombreusuario, clave, nombre1, nombre2, apellidop, apellidon,correo,direccion,dni)\n"
                 + "    VALUES (?, ?, ?, ?, ?, ?,?,?,?)");
+        int i = 1;
+        sentencia.setString(i++, u.getNombreusuario());
+        sentencia.setString(i++, u.getClave());
+        sentencia.setString(i++, u.getNombre1());
+        sentencia.setString(i++, u.getNombre2());
+        sentencia.setString(i++, u.getApellidop());
+        sentencia.setString(i++, u.getApellidon());
+        sentencia.setString(i++, u.getCorreo());
+        sentencia.setString(i++, u.getDireccion());
+        sentencia.setString(i++, u.getDni());
+        r = sentencia.executeUpdate();
+        cerrarConexion();
+        return r;
+    }
+
+    public int insertarEmpleado(Usuarios u) throws SQLException {
+        int r;
+        abrirConexion();
+        sentencia = conexion.prepareStatement("INSERT INTO usuarios(\n"
+                + "            nombreusuario, clave, nombre1, nombre2, apellidop, apellidon,correo,direccion,dni,idperfil)\n"
+                + "    VALUES (?, ?, ?, ?, ?, ?,?,?,?,3)");
+        int i = 1;
+        sentencia.setString(i++, u.getNombreusuario());
+        sentencia.setString(i++, u.getClave());
+        sentencia.setString(i++, u.getNombre1());
+        sentencia.setString(i++, u.getNombre2());
+        sentencia.setString(i++, u.getApellidop());
+        sentencia.setString(i++, u.getApellidon());
+        sentencia.setString(i++, u.getCorreo());
+        sentencia.setString(i++, u.getDireccion());
+        sentencia.setString(i++, u.getDni());
+        r = sentencia.executeUpdate();
+        cerrarConexion();
+        return r;
+    }
+
+    public int actualizarUser(Usuarios u) throws SQLException {
+        int r;
+        abrirConexion();
+        sentencia = conexion.prepareStatement("update usuarios \n"
+                + "            set nombre1 = ?, nombre2 = ?, apellidop = ?, apellidon = ?, correo = ?, direccion = ?, dni = ?\n"
+                + " where nombreusuario = ?");
+        int i = 1;
+        sentencia.setString(i++, u.getNombre1());
+        sentencia.setString(i++, u.getNombre2());
+        sentencia.setString(i++, u.getApellidop());
+        sentencia.setString(i++, u.getApellidon());
+        sentencia.setString(i++, u.getCorreo());
+        sentencia.setString(i++, u.getDireccion());
+        sentencia.setString(i++, u.getDni());
+        sentencia.setString(i++, u.getNombreusuario());
+        r = sentencia.executeUpdate();
+        cerrarConexion();
+        return r;
+    }
+
+    public int insertarAdmin(Usuarios u) throws SQLException {
+        int r;
+        abrirConexion();
+        sentencia = conexion.prepareStatement("INSERT INTO usuarios(\n"
+                + "            nombreusuario, clave, nombre1, nombre2, apellidop, apellidon,correo,direccion,dni,idperfil)\n"
+                + "    VALUES (?, ?, ?, ?, ?, ?,?,?,?,1)");
         int i = 1;
         sentencia.setString(i++, u.getNombreusuario());
         sentencia.setString(i++, u.getClave());
@@ -52,6 +116,7 @@ public class UsuariosDAO extends ConexionPSQL {
             user.setImagen(resultado.getString(i++));
             user.setDireccion(resultado.getString(i++));
             user.setDni(resultado.getString(i++));
+            user.setIdperfil(resultado.getInt(i++));
             user.setEstado("login");
         } else {
             user = null;
@@ -76,15 +141,42 @@ public class UsuariosDAO extends ConexionPSQL {
             user.setApellidop(resultado.getString(i++));
             user.setApellidon(resultado.getString(i++));
             user.setCorreo(resultado.getString(i++));
+            user.setImagen(resultado.getString(i++));
             user.setDireccion(resultado.getString(i++));
             user.setDni(resultado.getString(i++));
-            user.setImagen(resultado.getString(i++));
+            user.setIdperfil(resultado.getInt(i++));
             user.setEstado("login");
         } else {
             user = null;
         }
         cerrarConexion();
         return user;
+    }
+
+    public List<Usuarios> obtenerLista(int idperfil) throws SQLException {
+        List<Usuarios> listaUsuarios = new ArrayList<>();
+        abrirConexion();
+        sentencia = conexion.prepareStatement("select * from usuarios where idperfil=? ");
+        sentencia.setInt(1, idperfil);
+        resultado = sentencia.executeQuery();
+        while (resultado.next()) {
+            Usuarios user = new Usuarios();
+            int i = 1;
+            user.setNombreusuario(resultado.getString(i++));
+            user.setClave(resultado.getString(i++));
+            user.setNombre1(resultado.getString(i++));
+            user.setNombre2(resultado.getString(i++));
+            user.setApellidop(resultado.getString(i++));
+            user.setApellidon(resultado.getString(i++));
+            user.setCorreo(resultado.getString(i++));
+            user.setImagen(resultado.getString(i++));
+            user.setDireccion(resultado.getString(i++));
+            user.setDni(resultado.getString(i++));
+            user.setIdperfil(resultado.getInt(i++));
+            listaUsuarios.add(user);
+        }
+        cerrarConexion();
+        return listaUsuarios;
     }
 
 }

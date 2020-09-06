@@ -10,7 +10,7 @@
         <s:set name="reserva" value="#session['reserva']"/>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shop | BeautySpot - A HTML5 Template for Beauty Salons</title>
+          <title>Usuarios | Comercial Anthony</title>
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <!-- GOOGLE FONTS : begin -->
@@ -45,7 +45,7 @@
 
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="BeautySpot" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="BeautySpot" data-hires="images/logo.2x.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -147,8 +147,7 @@
                                     <s:if test="#reserva!=null">
                                         <span class="cart-count" id="unidades">Fecha</span>
                                         <span class=cart-count> (<s:property value="#reserva.fechas"/>)</span>
-                                    </s:if>                                  
-
+                                    </s:if>
                                 </a>
                                 <% }%>
                             </div>
@@ -263,11 +262,11 @@
                 <!-- PAGE HEADER : begin -->
                 <div id="page-header">
                     <div class="container">
-                        <h1>Detalle de compras</h1>
+                        <h1>Lista de administradores</h1>
                         <ul class="breadcrumbs">
                             <li><a href="index.jsp">Inicio</a></li>
-                            <li><a href="shop-list.jsp">Compras</a></li>
-                            <li>Compras</li>
+                            <li><a href="shop-list.jsp">Usuarios</a></li>
+                            <li>Administradores</li>
                         </ul>
                     </div>
                 </div>
@@ -288,33 +287,46 @@
                                 <table class="cart-table">
                                     <thead>
                                         <tr>
-                                            <th class="image-col"></th>
-                                            <th class="title-col">Detalle</th>
-                                            <th class="price-col">Fecha</th>
-                                            <th class="quantity-col">Hora</th>
-                                            <th class="total-col">Total</th>                                            
-                                            <th class="total-col">Factura</th>                                            
+                                            <th class="image-col">#</th>
+                                            <th class="title-col">Identificacion</th>
+                                            <th class="title-col">Nombre de Usuario</th>
+                                            <th class="price-col">Nombres </th>
+                                            <th class="quantity-col">Correo</th>
+                                            <th class="total-col">Dirección</th>                                            
+                                            <th class="total-col">Perfil</th>                                            
+                                            <th class="total-col">Editar</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>   
-                                        <s:iterator value="lista" var="list">
-                                            <tr>
-                                                <s:url action="listardetalle2" var="listarD">
-                                                    <s:param name="idreserva">
-                                                        <s:property value="idreserva"/>
-                                                    </s:param>
-                                                </s:url>                                        
-                                                <td class="product-image"></td>
-                                                <td><a href="<s:property value="#listarD"/>"><s:property value="detalle"/></a></td>
-                                                <td><s:property value="fechas"/></td>
-                                                <td><s:property value="hora"/></td>                                                     
-                                                <td><s:property value="getText('{0,number,#,##0.00}',{total})"/></td> 
-                                                <td> <a target="_blank" href="reports/ventas/<s:property value="idreserva"/>.pdf" class="c-button">ver factura</a>
+                                        <s:iterator value="listaUsuarios" var="list" status="list">
+                                            <tr>                                                                         
+                                                <td><s:property value="%{#list.count}"/></td>
+                                                <td><s:property value="dni"/></td>
+                                                <td><s:property value="nombreusuario"/></td>
+                                                <td><s:property value="getCompleto()"/></td>
+                                                <td><s:property value="correo"/></td>
+                                                <td><s:property value="direccion"/></td>                                                     
+                                                <td><s:property value="perfil.perfil"/></td> 
+                                                <td> 
+                                                    <s:url action="editarUser" var="editar">
+                                                        <s:param name="nombreusuario">
+                                                            <s:property value="nombreusuario"/>
+                                                        </s:param>                                                       
+                                                    </s:url>
+
+                                                    <a href="<s:property value="#editar"/>" class="c-button">Editar</a>
+                                                </td> 
                                                 </td> 
                                             </tr>                                        
                                         </s:iterator>
                                     </tbody>
                                 </table>
+                                
+                                <div class="container">
+                                    <!-- PAGE CONTENT : begin -->
+                                    <h1><strong><s:property value="mensaje"/></strong></h1>
+                                    <!-- PAGE CONTENT : end -->
+                                </div>
 
 
 
@@ -417,7 +429,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>COMERCIAL ANTHONY SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>COMERCIAL ANTHONY . Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

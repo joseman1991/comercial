@@ -1,13 +1,16 @@
 
 
 set global log_bin_trust_function_creators = 1;
-drop database if exists spa;
+drop database if exists comercial;
 
-create database spa; -- /*!40100 COLLATE 'utf8_spanish_ci' */; 
+create database comercial; -- /*!40100 COLLATE 'utf8_spanish_ci' */; 
 
-use spa;
+use comercial;
 
-
+CREATE TABLE perfiles (idperfil INTEGER NOT NULL PRIMARY KEY, perfil VARCHAR(20))ENGINE=INNODB;
+INSERT INTO perfiles VALUES (1,'ADMINISTRADOR');
+INSERT INTO perfiles VALUES (2,'CLIENTE');
+INSERT INTO perfiles VALUES (3,'EMPLEADO');
 
 create table usuarios(
  nombreusuario character varying(16) primary key not null,
@@ -19,18 +22,22 @@ create table usuarios(
  correo character varying (50) not null unique, 
  foto character varying (50)  default 'client_01.jpg',
  direccion character varying (100) not null,
- dni character varying (50) not null
-);
+ dni character varying (50) not NULL,
+ idperfil INT NOT NULL DEFAULT 2,
+ CONSTRAINT fk_us_pr FOREIGN KEY (idperfil) REFERENCES perfiles (idperfil) ON UPDATE CASCADE ON DELETE RESTRICT 
+)ENGINE=INNODB;
 
-insert into usuarios values('solange','123','Solange','','Riofrio','','solangea@gmail.com','client_01.jpg','BABAHOYO','1234567890');
-insert into usuarios values('katy','123','Katherine','','Moran','','katy@live.com','client_02.jpg','LA ISLA','0123456789');
+insert into usuarios values('solange','123','Solange','','Riofrio','','solangea@gmail.com','client_01.jpg','BABAHOYO','1234567890',2);
+insert into usuarios values('solange2','123','Solange','','Riofrio','','solangea@gmail.com','client_01.jpg','BABAHOYO','1234567890',3);
+insert into usuarios values('katty','123','Katherine','','Moran','','katy@live.com','client_02.jpg','LA ISLA','0123456789',2);
+insert into usuarios values('katty2','123','Katherine','','Moran','','katy@live.com','client_02.jpg','LA ISLA','0123456789',1);
 
 select * from usuarios;
 
 create table tipo(
 idtipo int not null primary key,
 descripcion character varying(20) not null
-);
+)ENGINE=INNODB;
 
 insert into tipo values(1,'Productos');
 insert into tipo values(2,'Servicios');
@@ -40,7 +47,7 @@ create table categorias(
  idcategorias int not null primary key,
  descripcion character varying(25),
  imagen character varying(25)
-);
+)ENGINE=INNODB;
 
 INSERT INTO categorias VALUES (1,'VÍVERES','licor_cafe.jpg');
 INSERT INTO categorias VALUES (2,'LICORES','licor_cafe.jpg');
@@ -59,7 +66,7 @@ create table items(
  rate FLOAT DEFAULT 0,
  CONSTRAINT fk_i_t FOREIGN KEY(idtipo) references tipo(idtipo) on update cascade on delete restrict,
  CONSTRAINT fk_i_c FOREIGN KEY(idcategorias) references categorias(idcategorias) on update cascade on delete restrict
-);
+)ENGINE=INNODB;
 
 
 -- -----------------------------------
@@ -87,7 +94,7 @@ select * from items;
   nombre character varying (50) not null,
   iditem int not NULL,
   CONSTRAINT fk_o_im FOREIGN KEY(iditem) references items(iditem) on delete restrict on update restrict
- );
+ )ENGINE=INNODB;
 
 select * from items;
 -- ----------------------------------------------------------------------------------------------------------------------
@@ -106,7 +113,7 @@ create table opiniones(
  CONSTRAINT fk_o_i FOREIGN KEY(idproducto)   references items(iditem) on delete restrict on update restrict,
  fecha date not null ,
  clasificacion int not null
-);
+)ENGINE=INNODB;
 -- ----------------------------------------------------------------------------------------------------------------------
  
 
@@ -122,7 +129,7 @@ create table ventas(
  CONSTRAINT fk_v_u  FOREIGN KEY(nombreusuario)  REFERENCES usuarios(nombreusuario) on delete restrict on update restrict,
  fecha date not null,
  total float default 0
-);
+)ENGINE=INNODB;
 
 -- ------------------------------------------------------------
 -- ------------------------------------------------------------
@@ -131,12 +138,12 @@ create table detalleventa(
  idventa bigint not NULL ,
  CONSTRAINT fk_v_d  FOREIGN KEY(idventa) references ventas(idventa) on update cascade on delete restrict,
  idtem int not NULL,
- CONSTRAINT fk_i_d FOREIGN KEY(idtem) references items(idtem) on update cascade on delete restrict,
+ CONSTRAINT fk_i__d FOREIGN KEY(idtem) references items(iditem) on update cascade on delete restrict,
  cantidad int not null,
  precio float not null,
  descuento float not null, 
  iva float not null default 12
-);
+)ENGINE=INNODB;
 
 -- ------------------------------------------------------------
 -- ------------------------------------------------------------

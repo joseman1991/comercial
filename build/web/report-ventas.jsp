@@ -179,23 +179,7 @@
                         <button class="header-panel-toggle" type="button"><i class="fa"></i></button>
 
                         <!-- HEADER RESERVATION : begin -->
-                        <div class="header-reservation">
-                            <%
-                                if (user != null) { %>                                
-                            <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
-                            </s:if>
-                            <s:else>
-                                <s:url action="eliminaReserva" var="el">
-                                    <s:param name="idreserva">1</s:param>
-                                </s:url>
-                                <a  href="<s:property value="#el"/>" class="c-button">Eliminar Reservacion</a>
-                            </s:else>
 
-                            <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
-                            <%}%>
-                        </div>
                         <!-- HEADER RESERVATION : end -->
 
                         <!-- HEADER CONTACT : begin -->
@@ -215,7 +199,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -224,7 +208,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -279,14 +263,12 @@
                 <!-- PAGE HEADER : begin -->
                 <div id="page-header">
                     <div class="container">
-                        <h1>Detalle de reservación</h1>
+                        <h1>Detalle de compras</h1>
                         <ul class="breadcrumbs">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li><a href="shop-list.jsp">Compras</a></li>
                             <li>Compras</li>
                         </ul>
-
-
                     </div>
                 </div>
 
@@ -380,10 +362,10 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                    <h3>Acerca de Beauty Center</h3>
-                                    <p><strong>BEAUTY CENTER</strong> es una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
+                                    <h3>Acerca de Comercial Antony</h3>
+                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece productos de <strong>primera necesidad y licores</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
-                                        <strong>productos y servicios</strong> que ofrecemos.</p>
+                                        <strong>productos </strong> que ofrecemos.</p>
                                 </div>
                                 <!-- BOTTOM TEXT : end -->
 
@@ -394,7 +376,7 @@
                                 <div class="bottom-subscribe various-content">
 
                                     <h3>CONTACTO</h3>
-                                    <p>Contactanos directamente en nuestro <a href="mailto:beautycenterspabby@gmail.com">Email</a>.</p>
+                                    <p>Contactanos directamente en nuestro <a href="mailto:antononystore.ec@gmail.com">Email</a>.</p>
 
 
                                 </div>
@@ -435,7 +417,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>COMERCIAL ANTHONY SPA. Todos los derechos Reservados 2018 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

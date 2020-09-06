@@ -10,6 +10,8 @@ import com.opensymphony.xwork2.ModelDriven;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 //import modelo.EnviarMensaje;
 import modelo.Items;
@@ -28,11 +30,13 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     private String mensaje;
     private final List<Items> listaItems;
     private int cantidad;
+    private List<Usuarios> listaUsuarios;
 
     public UsuarioAction() {
         udao = new UsuariosDAO();
         usuarios = new Usuarios();
         listaItems = new ArrayList<>();
+        listaUsuarios = new ArrayList<>();
     }
 
     @Override
@@ -47,7 +51,64 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 ////                EnviarMensaje enviarMensaje = new EnviarMensaje();
 //                enviarMensaje.enviarConGMail(usuarios.getCorreo(), "Bienvenido a Beauty Spa Center", "Gracias por registrarte "
 //                        + " en nuestro spa,");
-                mensaje = "Registro exitoso para el usuario "+usuarios.getNombreusuario();
+                mensaje = "Registro exitoso para el usuario " + usuarios.getNombreusuario();
+                return SUCCESS;
+            } else {
+                mensaje = "ha ocurrido un error";
+                System.out.println(mensaje);
+                return ERROR;
+            }
+        } catch (SQLException /*| MessagingException */ e) {
+            mensaje = "Ha ocurrido un error " + e.getMessage();
+            System.out.println(mensaje);
+            return ERROR;
+        }
+    }
+
+    public String actualizar() {
+        try {
+            int r = udao.actualizarUser(usuarios);
+            if (r > 0) {
+////                EnviarMensaje enviarMensaje = new EnviarMensaje();
+//                enviarMensaje.enviarConGMail(usuarios.getCorreo(), "Bienvenido a Beauty Spa Center", "Gracias por registrarte "
+//                        + " en nuestro spa,");
+                mensaje = "Usuario actualizado exitoso para el usuario " + usuarios.getNombreusuario();
+                listaUsuarios = udao.obtenerLista(usuarios.getIdperfil());
+                switch (usuarios.getIdperfil()) {
+                    case 1:
+                        return "admin";
+
+                    case 2:
+
+                        return "cliente";
+
+                    case 3:
+
+                        return "emppleado";
+                }
+
+                listaUsuarios = udao.obtenerLista(2);
+                return SUCCESS;
+            } else {
+                mensaje = "ha ocurrido un error";
+                System.out.println(mensaje);
+                return ERROR;
+            }
+        } catch (SQLException /*| MessagingException */ e) {
+            mensaje = "Ha ocurrido un error " + e.getMessage();
+            System.out.println(mensaje);
+            return ERROR;
+        }
+    }
+
+    public String insertarEmpleado() {
+        try {
+            int r = udao.insertarEmpleado(usuarios);
+            if (r > 0) {
+////                EnviarMensaje enviarMensaje = new EnviarMensaje();
+//                enviarMensaje.enviarConGMail(usuarios.getCorreo(), "Bienvenido a Beauty Spa Center", "Gracias por registrarte "
+//                        + " en nuestro spa,");
+                mensaje = "Registro exitoso para el usuario " + usuarios.getNombreusuario();
 
                 return SUCCESS;
             } else {
@@ -55,12 +116,33 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                 System.out.println(mensaje);
                 return ERROR;
             }
-        } catch (SQLException /*| MessagingException */e) {
+        } catch (SQLException /*| MessagingException */ e) {
             mensaje = "Ha ocurrido un error " + e.getMessage();
             System.out.println(mensaje);
             return ERROR;
         }
+    }
 
+    public String insertarAdmin() {
+        try {
+            int r = udao.insertarAdmin(usuarios);
+            if (r > 0) {
+////                EnviarMensaje enviarMensaje = new EnviarMensaje();
+//                enviarMensaje.enviarConGMail(usuarios.getCorreo(), "Bienvenido a Beauty Spa Center", "Gracias por registrarte "
+//                        + " en nuestro spa,");
+                mensaje = "Registro exitoso para el usuario " + usuarios.getNombreusuario();
+
+                return SUCCESS;
+            } else {
+                mensaje = "ha ocurrido un error";
+                System.out.println(mensaje);
+                return ERROR;
+            }
+        } catch (SQLException /*| MessagingException */ e) {
+            mensaje = "Ha ocurrido un error " + e.getMessage();
+            System.out.println(mensaje);
+            return ERROR;
+        }
     }
 
     public String login() {
@@ -91,6 +173,52 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = ex.getMessage();
             return "error";
         }
+    }
+
+    public String obtenerUserByUserName() {
+        try {
+            usuarios = udao.obtenerUsusario(usuarios.getNombreusuario());
+        } catch (SQLException ex) {
+            mensaje = ex.getMessage();
+            return "error";
+        }
+
+        return SUCCESS;
+    }
+
+    public List<Usuarios> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public String obtenerAdmin() {
+        try {
+            listaUsuarios = udao.obtenerLista(1);
+        } catch (SQLException ex) {
+            mensaje = ex.getMessage();
+            return "error";
+        }
+
+        return SUCCESS;
+    }
+
+    public String obtenerEmpleados() {
+        try {
+            listaUsuarios = udao.obtenerLista(3);
+        } catch (SQLException ex) {
+            mensaje = ex.getMessage();
+            return "error";
+        }
+        return SUCCESS;
+    }
+
+    public String obtenerClientes() {
+        try {
+            listaUsuarios = udao.obtenerLista(2);
+        } catch (SQLException ex) {
+            mensaje = ex.getMessage();
+            return "error";
+        }
+        return SUCCESS;
     }
 
     public Usuarios getUsuarios() {
