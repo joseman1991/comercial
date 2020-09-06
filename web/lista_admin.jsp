@@ -262,7 +262,7 @@
                 <!-- PAGE HEADER : begin -->
                 <div id="page-header">
                     <div class="container">
-                        <h1>Lista de administradores</h1>
+                        <h1>Agregar producto</h1>
                         <ul class="breadcrumbs">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li><a href="shop-list.jsp">Usuarios</a></li>
