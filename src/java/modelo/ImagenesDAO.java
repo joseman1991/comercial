@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -34,6 +35,19 @@ public class ImagenesDAO extends ConexionPSQL {
             listaImagenes.add(img);
         }
         cerrarConexion();
+    }
+    
+    public int insertarImagen(Imagenes imagen) throws SQLException{
+        int res=0;
+        abrirConexion();
+         sentencia = conexion.prepareStatement("insert into imagenes values (default,?,?)");
+        int i = 1;
+        sentencia.setString(i++, imagen.getNombre());
+        sentencia.setInt(i++, imagen.getIditem());       
+        res = sentencia.executeUpdate();      
+        
+        cerrarConexion();
+        return res;
     }
 
 }

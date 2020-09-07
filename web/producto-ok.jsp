@@ -10,7 +10,7 @@
         <s:set name="reserva2" value="#session['reserva2']"/>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shop | BeautySpot - A HTML5 Template for Beauty Salons</title>
+       <title>Comercial Antony  </title>
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <!-- GOOGLE FONTS : begin -->
@@ -169,50 +169,12 @@
 
 
 
-                        <div class="header-cart">
-                            <div class="header-cart-inner">
-                                <%
-                                    if (listItems != null) {
-                                %>
-                                <s:url action="servicio" var="urlServicio"/>  
-
-                                <a href="<s:property value="#urlServicio"/>">
-                                    <i class="cart-ico fa fa-address-book"></i>
-                                    <span class="cart-label">Reservación</span>
-                                    <s:if test="#session['cantidadSer']==null">
-                                        <span class="cart-count" id="serv">(0</span>
-                                    </s:if>
-                                    <s:else>
-                                        <span class="cart-count" id="serv">(${cantidadSer}</span>
-
-                                    </s:else>
-                                    <span class=cart-count> servicios)</span>
-                                </a>
-                                <a>
-                                    <s:if test="#reserva!=null">
-                                        <span class="cart-count" id="unidades">Fecha</span>
-                                        <span class=cart-count> (<s:property value="#reserva.fechas"/>)</span>
-                                    </s:if>                                  
-
-                                </a>
-                                <% }%>
-                            </div>
-                        </div>
+                        
 
                         <!-- HEADER CART : end -->
 
                         <!-- HEADER SEARCH : begin -->
-                        <div class="header-search">
-                            <div class="header-search-inner">
-                                <form class="search-form" action="search-results.jsp">
-                                    <i class="search-ico fa fa-search"></i>
-                                    <input class="search-input" type="text" placeholder="Search for...">
-                                    <button class="search-submit" type="submit"><i class="fa fa-angle-right"></i></button>
-                                    <button class="search-toggle" type="button">Buscar</button>
-                                </form>
-                            </div>
-                            <button class="search-toggle-mobile" type="button"><i class="fa"></i></button>
-                        </div>
+                     
                         <!-- HEADER SEARCH : end -->
 
                     </div>
@@ -244,7 +206,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -253,7 +215,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -456,10 +418,10 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                    <h3>Acerca de Beauty Center</h3>
-                                    <p><strong>BEAUTY CENTER</strong> es una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
+                                    <h3>Acerca de Comercial Antony</h3>
+                                                <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece productos de <strong>primera necesidad y licores</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
-                                        <strong>productos y servicios</strong> que ofrecemos.</p>
+                                        <strong>productos </strong> que ofrecemos.</p>
                                 </div>
                                 <!-- BOTTOM TEXT : end -->
 
@@ -470,7 +432,7 @@
                                 <div class="bottom-subscribe various-content">
 
                                     <h3>CONTACTO</h3>
-                                    <p>Contactanos directamente en nuestro <a href="mailto:beautycenterspabby@gmail.com">Email</a>.</p>
+                                    <p>Contactanos directamente en nuestro <a href="mailto:antononystore.ec@gmail.com">Email</a>.</p>
 
 
                                 </div>
@@ -511,7 +473,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>COMERCIAL ANTHONY SPA. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

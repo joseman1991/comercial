@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <s:set name="user" value="#session['usuario']"/>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro | Beauty Center</title>

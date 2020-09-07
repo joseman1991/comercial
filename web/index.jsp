@@ -190,50 +190,12 @@
 
 
 
-                        <div class="header-cart">
-                            <div class="header-cart-inner">
-                                <%
-                                    if (listItems != null) {
-                                %>
-                                <s:url action="servicio" var="urlServicio"/>  
-
-                                <a href="<s:property value="#urlServicio"/>">
-                                    <i class="cart-ico fa fa-address-book"></i>
-                                    <span class="cart-label">Reservación</span>
-                                    <s:if test="#session['cantidadSer']==null">
-                                        <span class="cart-count" id="serv">(0</span>
-                                    </s:if>
-                                    <s:else>
-                                        <span class="cart-count" id="serv">(${cantidadSer}</span>
-
-                                    </s:else>
-                                    <span class=cart-count> servicios)</span>
-                                </a>
-                                <a>
-                                    <s:if test="#reserva!=null">
-                                        <span class="cart-count" id="unidades">Fecha</span>
-                                        <span class=cart-count> (<s:property value="#reserva.fechas"/>)</span>
-                                    </s:if>                                  
-
-                                </a>
-                                <% }%>
-                            </div>
-                        </div>
+                       
 
                         <!-- HEADER CART : end -->
 
                         <!-- HEADER SEARCH : begin -->
-                        <div class="header-search">
-                            <div class="header-search-inner">
-                                <form class="search-form" action="search-results.jsp">
-                                    <i class="search-ico fa fa-search"></i>
-                                    <input class="search-input" type="text" placeholder="Search for...">
-                                    <button class="search-submit" type="submit"><i class="fa fa-angle-right"></i></button>
-                                    <button class="search-toggle" type="button">Buscar</button>
-                                </form>
-                            </div>
-                            <button class="search-toggle-mobile" type="button"><i class="fa"></i></button>
-                        </div>
+                        
                         <!-- HEADER SEARCH : end -->
 
                     </div>

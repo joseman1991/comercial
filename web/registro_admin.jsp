@@ -12,10 +12,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <s:set name="user" value="#session['usuario']"/>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro | Beauty Center</title>
+        <title>Registro | Comercial Antony</title>
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <!-- GOOGLE FONTS : begin -->
@@ -178,17 +179,7 @@
                         <!-- HEADER CART : end -->
 
                         <!-- HEADER SEARCH : begin -->
-                        <div class="header-search">
-                            <div class="header-search-inner">
-                                <form class="search-form" action="search-results.jsp">
-                                    <i class="search-ico fa fa-search"></i>
-                                    <input class="search-input" type="text" placeholder="Search for...">
-                                    <button class="search-submit" type="submit"><i class="fa fa-angle-right"></i></button>
-                                    <button class="search-toggle" type="button">Buscar</button>
-                                </form>
-                            </div>
-                            <button class="search-toggle-mobile" type="button"><i class="fa"></i></button>
-                        </div>
+                       
                         <!-- HEADER SEARCH : end -->
 
                     </div>

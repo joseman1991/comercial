@@ -12,10 +12,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <s:set name="user" value="#session['usuario']"/>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro | Beauty Center</title>
+        <title>Registro | Comercial Antony</title>
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <!-- GOOGLE FONTS : begin -->
@@ -273,7 +274,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -550,7 +551,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER. Todos los derechos Reservados 2020 ©</p>
+                                    <p>COMERCIAL ANTHONY. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

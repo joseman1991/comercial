@@ -48,7 +48,7 @@
                     <!-- HEADER BRANDING : end -->
 
                     <!-- HEADER NAVIGATION : begin -->
-                     <nav class="header-menu">
+                    <nav class="header-menu">
                             <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
                             <ul>
                                 <li class="m-active">

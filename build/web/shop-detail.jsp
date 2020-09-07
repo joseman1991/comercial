@@ -188,17 +188,7 @@
                 <!-- HEADER CART : end -->
 
                 <!-- HEADER SEARCH : begin -->
-                <div class="header-search">
-                    <div class="header-search-inner">
-                        <form class="search-form" action="search-results.jsp">
-                            <i class="search-ico fa fa-search"></i>
-                            <input class="search-input" type="text" placeholder="Search for...">
-                            <button class="search-submit" type="submit"><i class="fa fa-angle-right"></i></button>
-                            <button class="search-toggle" type="button">Search</button>
-                        </form>
-                    </div>
-                    <button class="search-toggle-mobile" type="button"><i class="fa"></i></button>
-                </div>
+             
                 <!-- HEADER SEARCH : end -->
 
             </div>
@@ -239,7 +229,7 @@
                         <li>
                             <div class="item-inner">
                                 <i class="ico fa fa-map-marker"></i>
-                                <strong>BEAUTY CENTER </strong><br>
+                                <strong>COMERCIAL ANTONHY </strong><br>
                                 Babahoyo - Calle Barreiro<br>
                                 entre 10 de Agosto
                             </div>
@@ -665,10 +655,10 @@
                         <!-- BOTTOM TEXT : begin -->
                         <div class="bottom-text various-content">
 
-                            <h3>Acerca de Beauty Center</h3>
-                            <p><strong>BEAUTY CENTER</strong> es una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
-                                Se parte de nosotros y disfruta al máximo de todos
-                                <strong>productos y servicios</strong> que ofrecemos.</p>
+                            <h3>Acerca de Comercial Antony</h3>
+                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece productos de <strong>primera necesidad y licores</strong>. 
+                                        Se parte de nosotros y disfruta al máximo de todos
+                                        <strong>productos </strong> que ofrecemos.</p>
                         </div>
                         <!-- BOTTOM TEXT : end -->
 
@@ -706,13 +696,7 @@
                     <div class="col-md-6 col-md-push-6">
 
                         <!-- FOOTER MENU : begin -->
-                        <nav class="footer-menu">
-                            <ul>
-                                <li><a href="index.jsp">Inicio</a></li>
-                                <li><a href="services.jsp">Servicio</a></li>
-                                <li><a href="documentation.jsp">Productos</a></li>
-                            </ul>
-                        </nav>
+                        
                         <!-- FOOTER MENU : end -->
 
                     </div>
@@ -720,7 +704,7 @@
 
                         <!-- FOOTER TEXT : begin -->
                         <div class="footer-text">
-                            <p>BEAUTY CENTER. Todos los derechos Reservados 2020 ©</p>
+                            <p>COMERCIAL ANTONHY. Todos los derechos Reservados 2020 ©</p>
                         </div>
                         <!-- FOOTER TEXT : end -->
 

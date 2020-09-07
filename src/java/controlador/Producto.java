@@ -114,13 +114,21 @@ public class Producto extends ActionSupport implements ModelDriven<Items> {
                     }
                 }
                 item.setImagen(imagenesFileName.get(0));
-                if (imagenesFileName.size() > 1) {
-                    imagenesFileName.remove(0);
-                }
+
             }
 
             int res = idao.insertarItem(item);
-            mensaje = "Producto "+item.getNombre()+"agregado correctamente";
+            if (imagenesFileName.size() > 1) {
+                imagenesFileName.remove(0);
+                for (int i = 0; i < imagenesFileName.size(); i++) {
+                    String get = imagenesFileName.get(i);
+                    Imagenes img=new Imagenes();
+                    img.setNombre(get);
+                    img.setIditem(res);
+                    imgdao.insertarImagen(img);
+                }
+            }
+            mensaje = "Producto " + item.getNombre() + " agregado correctamente";
             return SUCCESS;
         } catch (IOException | SQLException e) {
             System.out.println(e.getMessage());

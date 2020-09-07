@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -126,7 +127,7 @@ public class ItemsDAO extends ConexionPSQL {
     public int insertarItem(Items item) throws SQLException {
         int res = 0;
         abrirConexion();
-        sentencia = conexion.prepareStatement("insert into items values(default,?,?,?,?,?,1,1,?,?,DEFAULT);");
+        sentencia = conexion.prepareStatement("insert into items values(default,?,?,?,?,?,1,1,?,?,DEFAULT);",Statement.RETURN_GENERATED_KEYS);
         int i = 1;
         sentencia.setString(i++, item.getNombre());
         sentencia.setString(i++, item.getDescripcion());
@@ -136,6 +137,10 @@ public class ItemsDAO extends ConexionPSQL {
         sentencia.setString(i++, item.getImagen());
         sentencia.setInt(i++, item.getStock());
         res = sentencia.executeUpdate();
+        resultado = sentencia.getGeneratedKeys();
+        if (resultado.next()) {
+            res=resultado.getInt(1);
+        }
         cerrarConexion();
         return res;
     }

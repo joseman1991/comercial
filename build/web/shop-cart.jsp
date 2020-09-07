@@ -44,7 +44,7 @@
                 <div class="header-inner">
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="Beauty" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/logo.2x.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -168,50 +168,12 @@
 
 
 
-                        <div class="header-cart">
-                            <div class="header-cart-inner">
-                                <%
-                                    if (listItems != null) {
-                                %>
-                                <s:url action="servicio" var="urlServicio"/>  
-
-                                <a href="<s:property value="#urlServicio"/>">
-                                    <i class="cart-ico fa fa-address-book"></i>
-                                    <span class="cart-label">Reservación</span>
-                                    <s:if test="#session['cantidadSer']==null">
-                                        <span class="cart-count" id="serv">(0</span>
-                                    </s:if>
-                                    <s:else>
-                                        <span class="cart-count" id="serv">(${cantidadSer}</span>
-
-                                    </s:else>
-                                    <span class=cart-count> servicios)</span>
-                                </a>
-                                <a>
-                                    <s:if test="#reserva!=null">
-                                        <span class="cart-count" id="unidades">Fecha</span>
-                                        <span class=cart-count> (<s:property value="#reserva.fechas"/>)</span>
-                                    </s:if>                                  
-
-                                </a>
-                                <% }%>
-                            </div>
-                        </div>
+                      
 
                         <!-- HEADER CART : end -->
 
                         <!-- HEADER SEARCH : begin -->
-                        <div class="header-search">
-                            <div class="header-search-inner">
-                                <form class="search-form" action="search-results.jsp">
-                                    <i class="search-ico fa fa-search"></i>
-                                    <input class="search-input" type="text" placeholder="Search for...">
-                                    <button class="search-submit" type="submit"><i class="fa fa-angle-right"></i></button>
-                                    <button class="search-toggle" type="button">Buscar</button>
-                                </form>
-                            </div>
-                            <button class="search-toggle-mobile" type="button"><i class="fa"></i></button>
-                        </div>
+                  
                         <!-- HEADER SEARCH : end -->
 
                     </div>
@@ -223,25 +185,7 @@
                         <button class="header-panel-toggle" type="button"><i class="fa"></i></button>
 
                         <!-- HEADER RESERVATION : begin -->
-                        <div class="header-reservation">
-                            <%
-                                if (user != null) { %>                                
-                            <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
-                            </s:if>
-                            <s:else>
-                                <s:url action="eliminaReserva" var="el">
-                                    <s:param name="idreserva">1</s:param>
-                                </s:url>
-                                <a  href="<s:property value="#el"/>" class="c-button">Eliminar Reservacion</a>
-                            </s:else>
-
-                            <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
-                            <%}%>
-
-
-                        </div>
+                        
                         <!-- HEADER RESERVATION : end -->
 
                         <!-- HEADER CONTACT : begin -->
@@ -261,7 +205,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -270,7 +214,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -434,10 +378,10 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                    <h3>Acerca de Beauty Center</h3>
-                                    <p><strong>BEAUTY CENTER</strong> es una empresa que ofrece servicios de <strong>salón de belleza, peluquería, bienestar y spa</strong>. 
+                                    <h3>Acerca de Comercial Antony</h3>
+                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece productos de <strong>primera necesidad y licores</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
-                                        <strong>productos y servicios</strong> que ofrecemos.</p>
+                                        <strong>productos </strong> que ofrecemos.</p>
                                 </div>
                                 <!-- BOTTOM TEXT : end -->
 
@@ -448,7 +392,7 @@
                                 <div class="bottom-subscribe various-content">
 
                                     <h3>CONTACTO</h3>
-                                    <p>Contactanos directamente en nuestro <a href="mailto:beautycenterspabby@gmail.com">Email</a>.</p>
+                                    <p>Contactanos directamente en nuestro <a href="mailto:antononystore.ec@gmail.com">Email</a>.</p>
 
 
                                 </div>
@@ -475,13 +419,7 @@
                             <div class="col-md-6 col-md-push-6">
 
                                 <!-- FOOTER MENU : begin -->
-                                <nav class="footer-menu">
-                                    <ul>
-                                        <li><a href="index.jsp">Inicio</a></li>
-                                        <li><a href="services.jsp">Servicio</a></li>
-                                        <li><a href="documentation.jsp">Productos</a></li>
-                                    </ul>
-                                </nav>
+                                 
                                 <!-- FOOTER MENU : end -->
 
                             </div>
@@ -489,7 +427,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER SPA. Todos los derechos Reservados 2018 ©</p>
+                                    <p>COMERCIAL ANTHONY SPA. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 
