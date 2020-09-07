@@ -28,6 +28,7 @@
         <link rel="stylesheet" type="text/css" href="library/css/style.css">
         <link rel="stylesheet" type="text/css" href="library/css/skin/default.css">
         <link rel="stylesheet" type="text/css" href="library/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="library/css/style2.css">
         <!-- STYLESHEETS : end -->
 
         <!--[if lte IE 8]>
@@ -57,42 +58,76 @@
                     <div class="header-navigation">
 
                         <!-- HEADER MENU : begin -->
-                        <nav class="header-menu">
+                     <nav class="header-menu">
                             <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
                             <ul>
                                 <li class="m-active">
                                     <span><a href="index.jsp">Inicio</a></span>
                                 </li>
                                 <li>
-                                    <span><a href="services.jsp">Sitio</a></span>
-                                    <ul class="sub-menu">
-                                        <s:url action="categorias" var="urlTag" />                                             
-                                        <s:url action="productos" var="urlTagPro" >
-                                            <s:param name="page">1</s:param>
-                                        </s:url>                                            
+                                    <s:if test="#user!=null">
+                                        <span><a href="services.jsp">Sitio</a></span>
+                                        <ul class="sub-menu">
+                                            <s:url action="categorias" var="urlTag" />                                             
+                                            <s:url action="ver_admin" var="admin" />                                             
+                                            <s:url action="ver_emp" var="emp" />                                             
+                                            <s:url action="ver_client" var="client" />                                             
+                                            <s:url action="productos" var="urlTagPro" >
+                                                <s:param name="page">1</s:param>
+                                            </s:url>                                            
 
-                                        <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>  
 
-                                        <s:if test="#user!=null">
-                                            <s:url action="listarReservas" var="listarR">
-                                                <s:param name="nombreusuario">
-                                                    <s:property value="#user.nombreusuario"/>
-                                                </s:param>
-                                            </s:url>
+                                            <s:if test="#user!=null">
+                                                <s:url action="listarReservas" var="listarR">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:url action="listarVentas" var="listarC">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:if test="#user.perfil.idperfil==2">
+                                                    <li><a href="<s:property value="#listarC"/>">Mis compras compras</a></li>
 
-                                            <li><a href="<s:property value="#listarR"/>">Reporte de Reservas</a></li>
+                                                </s:if>
                                             </s:if>
 
-                                        <li><a href="gallery.jsp">Galería</a></li>
-                                        <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>                              
-                                    </ul>
+
+
+
+                                            <s:if test="#user.perfil.idperfil==1">
+                                                <li><a href="registro.jsp">Registro de Clientes</a></li>
+                                                <li><a href="registro_admin.jsp">Registrar nuevo admin</a></li>
+                                                <li><a href="registro_empleado.jsp">Registro de empleados</a></li>
+                                                <li><a href="<s:property value="#admin"/>">Lista de administradores</a></li>
+                                                <li><a href="<s:property value="#emp"/>">Lista de empleados</a></li>
+                                                <li><a href="<s:property value="#client"/>">Lista de clientes</a></li>
+                                                </s:if>
+
+
+                                        </ul>
+                                    </s:if>
                                 </li>
                                 <li>
                                     <span><a href="<s:property value="#urlTagPro"/>">Tienda</a></span>
                                     <ul class="sub-menu">
-                                        <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
-                                        <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>                                       
+                                        <s:if test="#user!=null">
+                                            <s:if test="#user.perfil.idperfil==2">
+                                                <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                                <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                                </s:if>
+
+                                            <s:if test="#user.perfil.idperfil==3 || #user.perfil.idperfil==1">
+                                                <li><a href="agg_producto.jsp">Agregar producto</a></li>   
+                                                </s:if>
+                                            </s:if>
+                                            <s:else>
+                                            <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                            <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                            </s:else>
+
                                     </ul>
                                 </li>
 
@@ -223,7 +258,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -277,7 +312,7 @@
                 <!-- PAGE HEADER : begin -->
                 <div id="page-header">
                     <div class="container">
-                        <h1>Actualizar usuarios</h1>
+                        <h1>Agregar productos</h1>
                         <ul class="breadcrumbs">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li>Registro</li>
@@ -290,14 +325,14 @@
                     <!-- PAGE CONTENT : begin -->
                     <div id="page-content">
                         <div class="form-fields">
-                            <form class="default-form" action="actualizarCliente" method="post" id="form-registro">
+                            <form class="default-form" action="agg_producto" enctype="multipart/form-data" method="post" id="form-registro">
                                 <div class="row">
 
 
                                     <div class="col-sm-6">
                                         <div class="form-field">
-                                            <label for="nombreusuario">Nombre de usuario<span>*</span></label>
-                                            <input type="text" placeholder="Nombre de Usuario" name="nombreusuario" value="<s:property value="usuarios.nombreusuario"/>" id="nu" readonly="">  
+                                            <label for="nombre">Nombre del producto<span>*</span></label>
+                                            <input type="text" placeholder="Nombre del producto" name="nombre" required="">  
                                             <div class="alert alert-danger collapse"   role="alert" id="nus">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -307,8 +342,26 @@
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="clave">Segundo nombre<span>*</span></label>
-                                            <input type="text" placeholder="Segundo nombre" name="nombre2"  value="<s:property value="usuarios.nombre2"/>" id="pn">
+                                            <label for="descripcion">Descripcion 1<span>*</span></label>
+                                            <input type="text"  placeholder="Descripcion 1" name="descripcion" required="">
+                                            <div class="alert alert-danger collapse"  role="alert"  id="sns">
+
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+
+                                        <div class="form-field">
+                                            <label for="stock">Stock<span>*</span></label>
+                                            <div class="quantity-input">
+                                                <input type="text" class="m-type-2" placeholder="Stock" value="1" min="1" name="stock" required="">
+                                            </div>
                                             <div class="alert alert-danger collapse"  role="alert" id="pns">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -317,29 +370,12 @@
                                             </div>
                                         </div>
 
-                                    </div>
 
-
-
-
-
-
-                                    <div class="col-sm-6">
-                                        <div class="form-field">
-                                            <label for="clave">Primer nombre<span>*</span></label>
-                                            <input type="text" placeholder="Primer nombre" name="nombre1" value="<s:property value="usuarios.nombre1"/>" id="sn">
-                                            <div class="alert alert-danger collapse"  role="alert"  id="sns">
-                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
-                                                    &times;
-                                                </a>
-                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
-                                            </div>
-                                        </div>
 
 
                                         <div class="form-field">
-                                            <label for="clave">Apellido Paterno<span>*</span></label>
-                                            <input type="text" placeholder="Apellido Paterno" name="apellidop" value="<s:property value="usuarios.apellidop"/>" id="ap">
+                                            <label for="descripcion">Descripción 2<span>*</span></label>
+                                            <input type="text"  placeholder="Descripción 2" name="descripcion2"  required="">
                                             <div class="alert alert-danger collapse"  role="alert" id="aps">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -351,8 +387,8 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-field">
-                                            <label for="clave">Apellido Materno<span>*</span></label>
-                                            <input type="text" placeholder="Apellido Materno" name="apellidon" value="<s:property value="usuarios.apellidon"/>" id="am">
+                                            <label for="precio">Precio<span>*</span></label>
+                                            <input type="text" placeholder="Precio" name="precio" required="">
                                             <div class="alert alert-danger collapse"  role="alert" id="ams">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -363,8 +399,8 @@
 
 
                                         <div class="form-field">
-                                            <label for="clave">Correo Electóronico<span>*</span></label>
-                                            <input type="email" class="m-required m-email" placeholder="Correo Electóronico"  value="<s:property value="usuarios.correo"/>" name="correo" id="corre">
+                                            <label for="clave">Imagen<span>*</span></label>
+                                            <input type="file" class="m-required m-email" placeholder="imagen" name="imagenes" accept="image/*" required="">
                                             <div class="alert alert-danger collapse"  role="alert" id="correos">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -378,8 +414,8 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-field">
-                                            <label for="ced">Cedula<span>*</span></label>
-                                            <input type="text" placeholder="Cedula" name="dni" value="<s:property value="usuarios.dni"/>" id="ced">
+                                            <label for="Descuento">Descuento<span>*</span></label>
+                                            <input type="text" placeholder="Descuento" name="descuento" >
                                             <div class="alert alert-danger collapse"  role="alert" id="ceds">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -388,9 +424,22 @@
                                             </div>
                                         </div>
                                         <div class="form-field">
-                                            <label for="dir">Direccion<span>*</span></label>
-                                            <input type="text" class="m-required m-email" placeholder="Direccion" value="<s:property value="usuarios.direccion"/>" name="direccion" id="dir">
-                                            <div class="alert alert-danger collapse"  role="alert" id="dirs">
+                                            <label for="clave">Imagen<span>*</span></label>
+                                            <input type="file" placeholder="imagen"  name="imagenes" required=""  accept="image/*">
+                                            <div class="alert alert-danger collapse"  role="alert" id="correos">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                    </div>
+                                            
+                                    <div class="col-sm-6">                                     
+                                        <div class="form-field">
+                                            <label for="clave">Imagen<span>*</span></label>
+                                            <input type="file" placeholder=""   name="imagenes" required="" accept="image/*">
+                                            <div class="alert alert-danger collapse"  role="alert" id="correos" >
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
                                                 </a>
@@ -406,11 +455,11 @@
 
 
                                 <br>
-                                <div class="form-field">
-                                    <input type="hidden" name="idperfil"  value="<s:property value="usuarios.idperfil"/>">
-                                    <button class="submit-btn c-button" type="actualizarCliente" id="boto">Actualizar</button>
+                                <div class="form-field">                                   
+                                    <button class="submit-btn c-button" type="submit" id="boto">Registrar</button>
                                 </div>
                             </form>
+                             <h1><strong><s:property value="mensaje"/></strong></h1>
                         </div>
                     </div>
 
@@ -486,7 +535,7 @@
 
                                 <!-- FOOTER TEXT : begin -->
                                 <div class="footer-text">
-                                    <p>BEAUTY CENTER. Todos los derechos Reservados 2020 ©</p>
+                                    <p>COMERCIAL ANTHONY. Todos los derechos Reservados 2020 ©</p>
                                 </div>
                                 <!-- FOOTER TEXT : end -->
 

@@ -48,45 +48,76 @@
                     <!-- HEADER BRANDING : end -->
 
                     <!-- HEADER NAVIGATION : begin -->
-                    <div class="header-navigation">
-
-                        <!-- HEADER MENU : begin -->
-                        <nav class="header-menu">
+                     <nav class="header-menu">
                             <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
                             <ul>
                                 <li class="m-active">
                                     <span><a href="index.jsp">Inicio</a></span>
                                 </li>
                                 <li>
-                                    <span><a href="services.jsp">Sitio</a></span>
-                                    <ul class="sub-menu">
-                                        <s:url action="categorias" var="urlTag" />                                             
-                                        <s:url action="productos" var="urlTagPro" >
-                                            <s:param name="page">1</s:param>
-                                        </s:url>                                            
+                                    <s:if test="#user!=null">
+                                        <span><a href="services.jsp">Sitio</a></span>
+                                        <ul class="sub-menu">
+                                            <s:url action="categorias" var="urlTag" />                                             
+                                            <s:url action="ver_admin" var="admin" />                                             
+                                            <s:url action="ver_emp" var="emp" />                                             
+                                            <s:url action="ver_client" var="client" />                                             
+                                            <s:url action="productos" var="urlTagPro" >
+                                                <s:param name="page">1</s:param>
+                                            </s:url>                                            
 
-                                        <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>  
 
-                                        <s:if test="#user!=null">
-                                            <s:url action="listarReservas" var="listarR">
-                                                <s:param name="nombreusuario">
-                                                    <s:property value="#user.nombreusuario"/>
-                                                </s:param>
-                                            </s:url>
+                                            <s:if test="#user!=null">
+                                                <s:url action="listarReservas" var="listarR">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:url action="listarVentas" var="listarC">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:if test="#user.perfil.idperfil==2">
+                                                    <li><a href="<s:property value="#listarC"/>">Mis compras compras</a></li>
 
-                                            <li><a href="<s:property value="#listarR"/>">Reporte de Reservas</a></li>
+                                                </s:if>
                                             </s:if>
 
-                                        <li><a href="gallery.jsp">Galería</a></li>
-                                        <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>
-                                    </ul>
+
+
+
+                                            <s:if test="#user.perfil.idperfil==1">
+                                                <li><a href="registro.jsp">Registro de Clientes</a></li>
+                                                <li><a href="registro_admin.jsp">Registrar nuevo admin</a></li>
+                                                <li><a href="registro_empleado.jsp">Registro de empleados</a></li>
+                                                <li><a href="<s:property value="#admin"/>">Lista de administradores</a></li>
+                                                <li><a href="<s:property value="#emp"/>">Lista de empleados</a></li>
+                                                <li><a href="<s:property value="#client"/>">Lista de clientes</a></li>
+                                                </s:if>
+
+
+                                        </ul>
+                                    </s:if>
                                 </li>
                                 <li>
                                     <span><a href="<s:property value="#urlTagPro"/>">Tienda</a></span>
                                     <ul class="sub-menu">
-                                        <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
-                                        <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                        <s:if test="#user!=null">
+                                            <s:if test="#user.perfil.idperfil==2">
+                                                <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                                <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                                </s:if>
+
+                                            <s:if test="#user.perfil.idperfil==3 || #user.perfil.idperfil==1">
+                                                <li><a href="agg_producto.jsp">Agregar producto</a></li>   
+                                                </s:if>
+                                            </s:if>
+                                            <s:else>
+                                            <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                            <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                            </s:else>
+
                                     </ul>
                                 </li>
 
@@ -95,91 +126,6 @@
                                 </li>
                             </ul>
                         </nav>
-                        <!-- HEADER MENU : end -->
-
-                        <!-- HEADER CART : begin -->
-                        <div class="header-cart">
-                            <div class="header-cart-inner">
-                                <%
-                                    if (listItems != null) {
-                                %>
-                                <s:url action="carrito" var="urlTag2"/>  
-
-                                <a href="<s:property value="#urlTag2"/>">
-                                    <i class="cart-ico fa fa-shopping-cart"></i>
-                                    <span class="cart-label">Carrito</span>
-                                    <s:if test="#session['elementos']==null">
-                                        <span class="cart-count" id="cart">(0</span>
-                                    </s:if>
-                                    <s:else>
-                                        <span class="cart-count" id="cart">(${elementos}</span>
-                                    </s:else>
-                                    <span class=cart-count> elementos)</span>
-                                </a>
-                                <a>                                        
-                                    <span class="cart-count" id="unidades">(<%
-                                        if (session.getAttribute("cantidad") != null) {
-                                            int c = Integer.parseInt(session.getAttribute("cantidad").toString());
-                                            out.println(c);
-                                        } else {
-                                            out.println(0);
-                                        }
-                                        %></span>
-                                    <span class=cart-count> unidades)</span>
-                                </a>
-                                <% }%>
-                            </div>
-                        </div>
-
-
-
-                        <div class="header-cart">
-                            <div class="header-cart-inner">
-                                <%
-                                    if (listItems != null) {
-                                %>
-                                <s:url action="servicio" var="urlServicio"/>  
-
-                                <a href="<s:property value="#urlServicio"/>">
-                                    <i class="cart-ico fa fa-address-book"></i>
-                                    <span class="cart-label">Reservación</span>
-                                    <s:if test="#session['cantidadSer']==null">
-                                        <span class="cart-count" id="serv">(0</span>
-                                    </s:if>
-                                    <s:else>
-                                        <span class="cart-count" id="serv">(${cantidadSer}</span>
-
-                                    </s:else>
-                                    <span class=cart-count> servicios)</span>
-                                </a>
-                                <a>
-                                    <s:if test="#reserva!=null">
-                                        <span class="cart-count" id="unidades">Fecha</span>
-                                        <span class=cart-count> (<s:property value="#reserva.fechas"/>)</span>
-                                    </s:if>                                  
-
-                                </a>
-                                <% }%>
-                            </div>
-                        </div>
-
-                        <!-- HEADER CART : end -->
-
-                        <!-- HEADER SEARCH : begin -->
-                        <div class="header-search">
-                            <div class="header-search-inner">
-                                <form class="search-form" action="search-results.jsp">
-                                    <i class="search-ico fa fa-search"></i>
-                                    <input class="search-input" type="text" placeholder="Search for...">
-                                    <button class="search-submit" type="submit"><i class="fa fa-angle-right"></i></button>
-                                    <button class="search-toggle" type="button">Buscar</button>
-                                </form>
-                            </div>
-                            <button class="search-toggle-mobile" type="button"><i class="fa"></i></button>
-                        </div>
-                        <!-- HEADER SEARCH : end -->
-
-                    </div>
                     <!-- HEADER NAVIGATION : end -->
 
                     <!-- HEADER PANEL : begin -->

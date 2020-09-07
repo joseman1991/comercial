@@ -46,13 +46,13 @@ public class ItemsDAO extends ConexionPSQL {
         }
         cerrarConexion();
     }
-    
-    public void obtenerItems(int id,String busca) throws SQLException {
+
+    public void obtenerItems(int id, String busca) throws SQLException {
         listaItems.clear();
         abrirConexion();
         sentencia = conexion.prepareStatement("select * from items where idtipo=? and nombre like ? order by idcategorias");
         sentencia.setInt(1, id);
-        sentencia.setString(2, busca+"%");
+        sentencia.setString(2, busca + "%");
         resultado = sentencia.executeQuery();
         while (resultado.next()) {
             Items c = new Items();
@@ -71,7 +71,6 @@ public class ItemsDAO extends ConexionPSQL {
         }
         cerrarConexion();
     }
-    
 
     public void obtenerRelacionados(int id, int idc) throws SQLException {
         listaItems.clear();
@@ -114,7 +113,7 @@ public class ItemsDAO extends ConexionPSQL {
             c.setDescuento(resultado.getFloat(6));
             c.setIdtipo(resultado.getInt(7));
             c.setIdcategorias(resultado.getInt(8));
-            Categorias ca= new CategoriasDAO().obtenerCategoria(resultado.getInt(8));
+            Categorias ca = new CategoriasDAO().obtenerCategoria(resultado.getInt(8));
             c.setCategorias(ca);
             c.setImagen(resultado.getString(9));
             c.setStock(resultado.getInt(10));
@@ -122,6 +121,23 @@ public class ItemsDAO extends ConexionPSQL {
         }
         cerrarConexion();
         return c;
+    }
+
+    public int insertarItem(Items item) throws SQLException {
+        int res = 0;
+        abrirConexion();
+        sentencia = conexion.prepareStatement("insert into items values(default,?,?,?,?,?,1,1,?,?,DEFAULT);");
+        int i = 1;
+        sentencia.setString(i++, item.getNombre());
+        sentencia.setString(i++, item.getDescripcion());
+        sentencia.setString(i++, item.getDescripcion2());
+        sentencia.setFloat(i++, item.getPrecio());
+        sentencia.setFloat(i++, item.getDescuento());
+        sentencia.setString(i++, item.getImagen());
+        sentencia.setInt(i++, item.getStock());
+        res = sentencia.executeUpdate();
+        cerrarConexion();
+        return res;
     }
 
 }

@@ -28,6 +28,7 @@
         <link rel="stylesheet" type="text/css" href="library/css/style.css">
         <link rel="stylesheet" type="text/css" href="library/css/skin/default.css">
         <link rel="stylesheet" type="text/css" href="library/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="library/css/style2.css">
         <!-- STYLESHEETS : end -->
 
         <!--[if lte IE 8]>
@@ -49,7 +50,7 @@
                 <div class="header-inner">
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/log.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/logo.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -57,7 +58,7 @@
                     <div class="header-navigation">
 
                         <!-- HEADER MENU : begin -->
-                       <nav class="header-menu">
+                     <nav class="header-menu">
                             <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
                             <ul>
                                 <li class="m-active">
@@ -228,23 +229,7 @@
                         <button class="header-panel-toggle" type="button"><i class="fa"></i></button>
 
                         <!-- HEADER RESERVATION : begin -->
-                        <div class="header-reservation">
-                            <%
-                                if (user != null) { %>                                
-                            <s:if test="#reserva==null">
-                            </s:if>
-                            <s:else>
-                                <s:url action="eliminaReserva" var="el">
-                                    <s:param name="idreserva">1</s:param>
-                                </s:url>
-                                <a  href="<s:property value="#el"/>" class="c-button">Eliminar Reservacion</a>
-                            </s:else>
 
-                            <%} else {%>
-                            <%}%>
-
-
-                        </div>
                         <!-- HEADER RESERVATION : end -->
 
                         <!-- HEADER CONTACT : begin -->
@@ -327,7 +312,7 @@
                 <!-- PAGE HEADER : begin -->
                 <div id="page-header">
                     <div class="container">
-                        <h1>Registráte y disfruta de nuestras ofertas</h1>
+                        <h1>Agregar productos</h1>
                         <ul class="breadcrumbs">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li>Registro</li>
@@ -340,12 +325,14 @@
                     <!-- PAGE CONTENT : begin -->
                     <div id="page-content">
                         <div class="form-fields">
-                            <form class="default-form" action="registro" method="post" id="form-registro">
+                            <form class="default-form" action="actualizarCliente" enctype="multipart/form-data" method="post" id="form-registro">
                                 <div class="row">
+
+
                                     <div class="col-sm-6">
                                         <div class="form-field">
-                                            <label for="nombreusuario">Nombre de usuario<span>*</span></label>
-                                            <input type="text" placeholder="Nombre de Usuario" name="nombreusuario" id="nu">  
+                                            <label for="nombreusuario">Nombre del producto<span>*</span></label>
+                                            <input type="text" placeholder="Nombre del producto" name="nombreusuario" value="<s:property value="usuarios.nombreusuario"/>" id="nu">  
                                             <div class="alert alert-danger collapse"   role="alert" id="nus">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -353,10 +340,13 @@
                                                 <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
                                             </div>
                                         </div>
+
                                         <div class="form-field">
-                                            <label for="pclave">Contraseña<span>*</span></label>
-                                            <input type="password" placeholder="Contraseña" name="pclave" id="c1">
-                                            <div class="alert alert-danger collapse"  role="alert" id="c1s">
+                                            <label for="clave">Descripcion 1<span>*</span></label>
+                                            <input type="text"  placeholder="Primer nombre" name="nombre1" value="<s:property value="item.nombre1"/>" id="sn">
+
+                                            <div class="alert alert-danger collapse"  role="alert"  id="sns">
+
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
                                                 </a>
@@ -365,22 +355,18 @@
                                         </div>
                                     </div>
 
+
+
+
+
+
                                     <div class="col-sm-6">
+
                                         <div class="form-field">
-                                            <label for="clave">Repite la Contraseña<span>*</span></label>
-                                            <input type="password" placeholder="Repite la Contraseña" name="clave" id="c">
-                                            <div class="alert alert-danger collapse"  role="alert" id="cs">
-                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
-                                                    &times;
-                                                </a>
-                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            <label for="clave">Stock<span>*</span></label>
+                                            <div class="quantity-input">
+                                                <input type="text" class="m-type-2" placeholder="Primer nombre" name="nombre1" value="<s:property value="usuarios.nombre1"/>" id="pn">
                                             </div>
-                                        </div>
-
-
-                                        <div class="form-field">
-                                            <label for="clave">Primer nombre<span>*</span></label>
-                                            <input type="text" placeholder="Primer nombre" name="nombre1" id="pn">
                                             <div class="alert alert-danger collapse"  role="alert" id="pns">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -388,24 +374,13 @@
                                                 <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="form-field">
-                                            <label for="clave">Segundo nombre<span>*</span></label>
-                                            <input type="text" placeholder="Segundo nombre" name="nombre2" id="sn">
-                                            <div class="alert alert-danger collapse"  role="alert" id="sns">
-                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
-                                                    &times;
-                                                </a>
-                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
-                                            </div>
-                                        </div>
+
 
 
                                         <div class="form-field">
-                                            <label for="clave">Apellido Paterno<span>*</span></label>
-                                            <input type="text" placeholder="Apellido Paterno" name="apellidop" id="ap">
+                                            <label for="clave">Descripción 2<span>*</span></label>
+                                            <input type="text"  placeholder="Apellido Paterno" name="apellidop" value="<s:property value="usuarios.apellidop"/>" id="ap">
                                             <div class="alert alert-danger collapse"  role="alert" id="aps">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -417,8 +392,8 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-field">
-                                            <label for="clave">Apellido Materno<span>*</span></label>
-                                            <input type="text" placeholder="Apellido Materno" name="apellidon" id="am">
+                                            <label for="clave">Precio<span>*</span></label>
+                                            <input type="text" placeholder="Apellido Materno" name="apellidon" value="<s:property value="usuarios.apellidon"/>" id="am">
                                             <div class="alert alert-danger collapse"  role="alert" id="ams">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -429,8 +404,8 @@
 
 
                                         <div class="form-field">
-                                            <label for="clave">Correo Electóronico<span>*</span></label>
-                                            <input type="email" class="m-required m-email" placeholder="Correo Electóronico" name="correo" id="corre">
+                                            <label for="clave">Imagen<span>*</span></label>
+                                            <input type="file" class="m-required m-email" placeholder="Correo Electóronico" name="imagenes[]" required="">
                                             <div class="alert alert-danger collapse"  role="alert" id="correos">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -444,8 +419,8 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-field">
-                                            <label for="ced">Cedula<span>*</span></label>
-                                            <input type="text" placeholder="Cedula" name="dni" id="ced">
+                                            <label for="ced">Descuento<span>*</span></label>
+                                            <input type="text" placeholder="Cedula" name="dni" value="<s:property value="usuarios.dni"/>" id="ced">
                                             <div class="alert alert-danger collapse"  role="alert" id="ceds">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
@@ -454,9 +429,22 @@
                                             </div>
                                         </div>
                                         <div class="form-field">
-                                            <label for="dir">Direccion<span>*</span></label>
-                                            <input type="text" class="m-required m-email" placeholder="Direccion" name="direccion" id="dir">
-                                            <div class="alert alert-danger collapse"  role="alert" id="dirs">
+                                            <label for="clave">Imagen<span>*</span></label>
+                                            <input type="file" placeholder="imagen"  value="<s:property value="usuarios.correo"/>" name="imagenes[]" required="">
+                                            <div class="alert alert-danger collapse"  role="alert" id="correos">
+                                                <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                                    &times;
+                                                </a>
+                                                <strong>¡Cuidado!</strong> Es muy importante que leas este mensaje de alerta.
+                                            </div>
+                                        </div>
+                                    </div>
+                                            
+                                    <div class="col-sm-6">                                     
+                                        <div class="form-field">
+                                            <label for="clave">Imagen<span>*</span></label>
+                                            <input type="file" placeholder=""  value="<s:property value="usuarios.correo"/>" name="imagenes[]" required="">
+                                            <div class="alert alert-danger collapse"  role="alert" id="correos">
                                                 <a id="linkClose" href="#" class="close" data-dismiss="alert" aria-label="Close">
                                                     &times;
                                                 </a>
@@ -465,26 +453,28 @@
                                         </div>
                                     </div>
 
-
-
-
                                 </div>
+
+
+
+
 
                                 <br>
                                 <div class="form-field">
-                                    <button class="submit-btn c-button" type="button" id="boto">Registrar</button>
+                                    <input type="hidden" name="idperfil"  value="<s:property value="usuarios.idperfil"/>">
+                                    <button class="submit-btn c-button" type="actualizarCliente" id="boto">Actualizar</button>
                                 </div>
                             </form>
                         </div>
-
-
-
                     </div>
-                    <!-- PAGE CONTENT : end -->
+
 
                 </div>
+                <!-- PAGE CONTENT : end -->
 
             </div>
+
+
             <!-- CORE : end -->
 
             <!-- BOTTOM PANEL : begin -->
@@ -497,8 +487,8 @@
                                 <!-- BOTTOM TEXT : begin -->
                                 <div class="bottom-text various-content">
 
-                                   <h3>Acerca de Comercial Antony</h3>
-                                   <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece prodcutos de <strong> primera necesidad y licoreria</strong>. 
+                                    <h3>Acerca de Comercial Antony</h3>
+                                    <p><strong>COMERCIAL ANTONHY</strong> es una empresa que ofrece prodcutos de <strong> primera necesidad y licoreria</strong>. 
                                         Se parte de nosotros y disfruta al máximo de todos
                                         <strong>productos</strong> que ofrecemos.</p>
                                 </div>

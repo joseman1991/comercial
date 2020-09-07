@@ -77,38 +77,83 @@
 
                 <!-- HEADER MENU : begin -->
                 <nav class="header-menu">
-                    <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
-                    <ul>
-                        <li class="m-active">
-                            <span><a href="index.jsp">Incio</a></span>
-                        </li>
-                        <li>
-                            <span><a href="services.jsp">Sitio</a></span>
-                            <ul class="sub-menu">
-                                <s:url action="categorias" var="urlTag" />                                             
-                                <s:url action="productos" var="urlTagPro" >
-                                    <s:param name="page">1</s:param>
-                                </s:url>                                            
+                            <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
+                            <ul>
+                                <li class="m-active">
+                                    <span><a href="index.jsp">Inicio</a></span>
+                                </li>
+                                <li>
+                                    <s:if test="#user!=null">
+                                        <span><a href="services.jsp">Sitio</a></span>
+                                        <ul class="sub-menu">
+                                            <s:url action="categorias" var="urlTag" />                                             
+                                            <s:url action="ver_admin" var="admin" />                                             
+                                            <s:url action="ver_emp" var="emp" />                                             
+                                            <s:url action="ver_client" var="client" />                                             
+                                            <s:url action="productos" var="urlTagPro" >
+                                                <s:param name="page">1</s:param>
+                                            </s:url>                                            
 
-                                <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>                                       
-                                <li><a href="gallery.jsp">Galería</a></li>
-                                <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                <li><a href="about-us.jsp">A cerca de nosotros</a></li>                              
-                            </ul>
-                        </li>
-                        <li>
-                            <span><a href="<s:property value="#urlTagPro"/>">Tienda</a></span>
-                            <ul class="sub-menu">
-                                <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
-                                <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>                                       
-                            </ul>
-                        </li>
 
-                        <li>
-                            <span><a href="contact.jsp">Contactos</a></span>
-                        </li>
-                    </ul>
-                </nav>
+                                            <s:if test="#user!=null">
+                                                <s:url action="listarReservas" var="listarR">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:url action="listarVentas" var="listarC">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:if test="#user.perfil.idperfil==2">
+                                                    <li><a href="<s:property value="#listarC"/>">Mis compras compras</a></li>
+
+                                                </s:if>
+                                            </s:if>
+
+
+
+
+                                            <s:if test="#user.perfil.idperfil==1">
+                                                <li><a href="registro.jsp">Registro de Clientes</a></li>
+                                                <li><a href="registro_admin.jsp">Registrar nuevo admin</a></li>
+                                                <li><a href="registro_empleado.jsp">Registro de empleados</a></li>
+                                                <li><a href="<s:property value="#admin"/>">Lista de administradores</a></li>
+                                                <li><a href="<s:property value="#emp"/>">Lista de empleados</a></li>
+                                                <li><a href="<s:property value="#client"/>">Lista de clientes</a></li>
+                                                </s:if>
+
+
+                                        </ul>
+                                    </s:if>
+                                </li>
+                                <li>
+                                    <span><a href="<s:property value="#urlTagPro"/>">Tienda</a></span>
+                                    <ul class="sub-menu">
+                                        <s:if test="#user!=null">
+                                            <s:if test="#user.perfil.idperfil==2">
+                                                <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                                <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                                </s:if>
+
+                                            <s:if test="#user.perfil.idperfil==3 || #user.perfil.idperfil==1">
+                                                <li><a href="agg_producto.jsp">Agregar producto</a></li>   
+                                                </s:if>
+                                            </s:if>
+                                            <s:else>
+                                            <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                            <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                            </s:else>
+
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <span><a href="contact.jsp">Contactos</a></span>
+                                </li>
+                            </ul>
+                        </nav>
                 <!-- HEADER MENU : end -->
 
                 <!-- HEADER CART : begin -->

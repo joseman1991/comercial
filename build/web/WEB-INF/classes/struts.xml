@@ -4,9 +4,11 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-
+<constant name="struts.multipart.maxSize" value="104857600" />
     
     <package name="default" namespace="/"   extends="struts-default">
+        
+        
         
         <action name="registro" class="controlador.UsuarioAction" method="insertar">
             <result name="success"> registro_ok.jsp</result>
@@ -25,6 +27,11 @@
         
         <action name="listo" class="controlador.Carrito" method="execute">
             <result name="success"> index.jsp</result>
+            <result name="error"> 404.jsp</result>            
+        </action>
+        
+        <action name="agg_producto" class="controlador.Producto" method="insertar">
+            <result name="success">agg_producto.jsp</result>
             <result name="error"> 404.jsp</result>            
         </action>
         

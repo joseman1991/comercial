@@ -40,7 +40,7 @@
                 <div class="header-inner">
                     <!-- HEADER BRANDING : begin -->
                     <div class="header-branding">
-                        <a href="index.jsp"><img src="images/logo.png" alt="Beauty" data-hires="images/logo.2x.png" width="291"></a>
+                        <a href="index.jsp"><img src="images/log.png" alt="Beauty" data-hires="images/log.png" width="291"></a>
                     </div>
                     <!-- HEADER BRANDING : end -->
 
@@ -48,42 +48,76 @@
                     <div class="header-navigation">
 
                         <!-- HEADER MENU : begin -->
-                        <nav class="header-menu">
+                          <nav class="header-menu">
                             <button class="header-menu-toggle" type="button"><i class="fa fa-bars"></i>MENU</button>
                             <ul>
                                 <li class="m-active">
                                     <span><a href="index.jsp">Inicio</a></span>
                                 </li>
                                 <li>
-                                    <span><a href="services.jsp">Sitio</a></span>
-                                    <ul class="sub-menu">
-                                        <s:url action="categorias" var="urlTag" />                                             
-                                        <s:url action="productos" var="urlTagPro" >
-                                            <s:param name="page">1</s:param>
-                                        </s:url>                                            
+                                    <s:if test="#user!=null">
+                                        <span><a href="services.jsp">Sitio</a></span>
+                                        <ul class="sub-menu">
+                                            <s:url action="categorias" var="urlTag" />                                             
+                                            <s:url action="ver_admin" var="admin" />                                             
+                                            <s:url action="ver_emp" var="emp" />                                             
+                                            <s:url action="ver_client" var="client" />                                             
+                                            <s:url action="productos" var="urlTagPro" >
+                                                <s:param name="page">1</s:param>
+                                            </s:url>                                            
 
-                                        <li><a href="<s:property value="#urlTag"/>">Servicios</a></li>  
 
-                                        <s:if test="#user!=null">
-                                            <s:url action="listarReservas" var="listarR">
-                                                <s:param name="nombreusuario">
-                                                    <s:property value="#user.nombreusuario"/>
-                                                </s:param>
-                                            </s:url>
+                                            <s:if test="#user!=null">
+                                                <s:url action="listarReservas" var="listarR">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:url action="listarVentas" var="listarC">
+                                                    <s:param name="nombreusuario">
+                                                        <s:property value="#user.nombreusuario"/>
+                                                    </s:param>
+                                                </s:url>
+                                                <s:if test="#user.perfil.idperfil==2">
+                                                    <li><a href="<s:property value="#listarC"/>">Mis compras compras</a></li>
 
-                                            <li><a href="<s:property value="#listarR"/>">Reporte de Reservas</a></li>
+                                                </s:if>
                                             </s:if>
 
-                                        <li><a href="gallery.jsp">Galería</a></li>
-                                        <li><a href="registro.jsp">Registro de Clientes</a></li>
-                                        <li><a href="about-us.jsp">Acerca de nosotros</a></li>                              
-                                    </ul>
+
+
+
+                                            <s:if test="#user.perfil.idperfil==1">
+                                                <li><a href="registro.jsp">Registro de Clientes</a></li>
+                                                <li><a href="registro_admin.jsp">Registrar nuevo admin</a></li>
+                                                <li><a href="registro_empleado.jsp">Registro de empleados</a></li>
+                                                <li><a href="<s:property value="#admin"/>">Lista de administradores</a></li>
+                                                <li><a href="<s:property value="#emp"/>">Lista de empleados</a></li>
+                                                <li><a href="<s:property value="#client"/>">Lista de clientes</a></li>
+                                                </s:if>
+
+
+                                        </ul>
+                                    </s:if>
                                 </li>
                                 <li>
                                     <span><a href="<s:property value="#urlTagPro"/>">Tienda</a></span>
                                     <ul class="sub-menu">
-                                        <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
-                                        <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>                                       
+                                        <s:if test="#user!=null">
+                                            <s:if test="#user.perfil.idperfil==2">
+                                                <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                                <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                                </s:if>
+
+                                            <s:if test="#user.perfil.idperfil==3 || #user.perfil.idperfil==1">
+                                                <li><a href="agg_producto.jsp">Agregar producto</a></li>   
+                                                </s:if>
+                                            </s:if>
+                                            <s:else>
+                                            <li><a href="<s:property value="#urlTagPro"/>">Lista de Productos</a></li>                                       
+                                            <li><a href="<s:property value="#urlTagPro"/>">Carrito</a></li>
+                                            </s:else>
+
                                     </ul>
                                 </li>
 
@@ -185,25 +219,7 @@
                         <button class="header-panel-toggle" type="button"><i class="fa"></i></button>
 
                         <!-- HEADER RESERVATION : begin -->
-                        <div class="header-reservation">
-                            <%
-                                if (user != null) { %>                                
-                            <s:if test="#reserva==null">
-                                <a href="ajax/reservation-form.jsp" class="c-button m-open-ajax-modal">Haz una Reservacion</a>
-                            </s:if>
-                            <s:else>
-                                <s:url action="eliminaReserva" var="el">
-                                    <s:param name="idreserva">1</s:param>
-                                </s:url>
-                                <a  href="<s:property value="#el"/>" class="c-button">Eliminar Reservacion</a>
-                            </s:else>
-
-                            <%} else {%>
-                            <a href="login.jsp" class="c-button" >Haz una Reservacion</a>
-                            <%}%>
-
-
-                        </div>
+                   
                         <!-- HEADER RESERVATION : end -->
 
                         <!-- HEADER CONTACT : begin -->
@@ -223,7 +239,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-envelope-o"></i>
-                                        <a href="mailto:beautycenterspabby@gmail.com">beautycenterspabby@gmail.com</a>
+                                        <a href="mailto:antononystore.ec@gmail.com">antononystore.ec@gmail.com</a>
                                     </div>
                                 </li>
                                 <!-- EMAIL : end -->
@@ -232,7 +248,7 @@
                                 <li>
                                     <div class="item-inner">
                                         <i class="ico fa fa-map-marker"></i>
-                                        <strong>BEAUTY CENTER </strong><br>
+                                        <strong>COMERCIAL ANTHONY </strong><br>
                                         Babahoyo - Calle Barreiro<br>
                                         entre 10 de Agosto
                                     </div>
@@ -302,27 +318,11 @@
 							<div class="various-content">
 
 								<!-- SEARCH SECTION : begin -->
-								<section>
-									<h2>Search the site</h2>
-									<form class="c-search-form" action="search-results.jsp">
-										<div class="form-fields">
-											<input type="text" data-placeholder="What to search...">
-											<button class="c-button" type="submit"><i class="fa fa-search"></i></button>
-										</div>
-									</form>
-								</section>
+								
 								<!-- SEARCH SECTION : end -->
 
 								<!-- LINKS SECTION : begin -->
-								<section>
-									<h2>Latest articles</h2>
-									<ul>
-										<li><a href="#">Maecenas nec odio et ante tincidunt</a></li>
-										<li><a href="#">Curabitur ullamcorper ultricies nisi</a></li>
-										<li><a href="#">Vivamus elementum semper nisi</a></li>
-										<li><a href="#">Nam quam nunc, blandit vel, luctus pulvinar</a></li>
-									</ul>
-								</section>
+								
 								<!-- LINKS SECTION : end -->
 
 							</div>
@@ -346,43 +346,14 @@
 							<div class="col-md-6">
 
 								<!-- BOTTOM TEXT : begin -->
-								<div class="bottom-text various-content">
-
-									<h3>About Beautyspot</h3>
-									<p><strong>BEAUTYSPOT</strong> is an ideal template for <strong>beauty salon, hairdressers, wellness or spa</strong>. Clean code and top-notch web design techniques are wrapped with <strong>several gorgeous color schemes</strong> to choose from.</p><p>You can buy this responsive HTML5/CSS3 template on <a href="http://themeforest.net/user/ShakespeareThemes/portfolio?ref=LubosVolovar">ThemeForest</a>.</p>
-
-								</div>
+								
 								<!-- BOTTOM TEXT : end -->
 
 							</div>
 							<div class="col-md-6">
 
 								<!-- BOTTOM SUBSCRIBE : begin -->
-								<div class="bottom-subscribe various-content">
-
-									<h3>Newsletter</h3>
-									<p>BEAUTYSPOT supports MailChimp integration.</p>
-									<form id="subscribe-form" action="http://volovar.us8.list-manage.com/subscribe/post-json?u=76a50c9454ec8ab78914d1bf2&amp;id=49e892f53d&amp;c=?" method="get">
-
-										<!-- VALIDATION ERROR MESSAGE : begin -->
-										<p style="display: none;" class="c-alert-message m-warning m-validation-error"><i class="ico fa fa-exclamation-circle"></i>Email address is required.</p>
-										<!-- VALIDATION ERROR MESSAGE : end -->
-
-										<!-- SENDING REQUEST ERROR MESSAGE : begin -->
-										<p style="display: none;" class="c-alert-message m-warning m-request-error"><i class="ico fa fa-exclamation-circle"></i>There was a connection problem. Try again later.</p>
-										<!-- SENDING REQUEST ERROR MESSAGE : end -->
-
-										<!-- SUCCESS MESSAGE : begin -->
-										<p style="display: none;" class="c-alert-message m-success"><i class="ico fa fa-check-circle"></i><strong>Sent successfully.</strong></p>
-										<!-- SUCCESS MESSAGE : end -->
-
-										<div class="form-fields">
-											<input class="m-required m-email" name="EMAIL" type="text" data-placeholder="Your email address" title="Your email address">
-											<button class="c-button submit-btn" type="submit" data-label="Subscribe" data-loading-label="Sending...">Subscribe</button>
-										</div>
-									</form>
-
-								</div>
+								
 								<!-- BOTTOM SUBSCRIBE : end -->
 
 							</div>
@@ -397,15 +368,7 @@
 				<div class="container">
 
 					<!-- FOOTER TWITTER : begin -->
-					<div class="footer-twitter m-paginated" data-id="LubosBudkovsky" data-limit="3" data-interval="12000">
-						<div class="footer-twitter-inner">
-							<i class="ico fa fa-twitter"></i>
-							<h4 class="twitter-title"><a href="https://twitter.com/LubosBudkovsky">@LubosBudkovsky</a></h4>
-							<div class="twitter-feed">
-								<span class="c-loading-anim"><span></span></span>
-							</div>
-						</div>
-					</div>
+					
 					<!-- FOOTER TWITTER : end -->
 
 					<!-- FOOTER BOTTOM : begin -->
@@ -414,22 +377,14 @@
 							<div class="col-md-6 col-md-push-6">
 
 								<!-- FOOTER MENU : begin -->
-								<nav class="footer-menu">
-									<ul>
-										<li><a href="index.jsp">Home</a></li>
-										<li><a href="services.jsp">Services</a></li>
-										<li><a href="documentation.jsp">Documentation</a></li>
-									</ul>
-								</nav>
+								
 								<!-- FOOTER MENU : end -->
 
 							</div>
 							<div class="col-md-6 col-md-pull-6">
 
 								<!-- FOOTER TEXT : begin -->
-								<div class="footer-text">
-									<p>Buy this template on <a href="http://themeforest.net/user/LubosVolovar/portfolio?ref=LubosVolovar">ThemeForest.net</a></p>
-								</div>
+							
 								<!-- FOOTER TEXT : end -->
 
 							</div>

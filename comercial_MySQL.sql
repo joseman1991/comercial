@@ -27,9 +27,9 @@ create table usuarios(
  CONSTRAINT fk_us_pr FOREIGN KEY (idperfil) REFERENCES perfiles (idperfil) ON UPDATE CASCADE ON DELETE RESTRICT 
 )ENGINE=INNODB;
 
-insert into usuarios values('solange','123','Solange','','Riofrio','','solangea@gmail.com','client_01.jpg','BABAHOYO','1234567890',2);
+insert into usuarios values('solange','123','Solange','','Riofrio','','solangea1@gmail.com','client_01.jpg','BABAHOYO','1234567890',2);
 insert into usuarios values('solange2','123','Solange','','Riofrio','','solangea@gmail.com','client_01.jpg','BABAHOYO','1234567890',3);
-insert into usuarios values('katty','123','Katherine','','Moran','','katy@live.com','client_02.jpg','LA ISLA','0123456789',2);
+insert into usuarios values('katty','123','Katherine','','Moran','','katty@live.com','client_02.jpg','LA ISLA','0123456789',2);
 insert into usuarios values('katty2','123','Katherine','','Moran','','katy@live.com','client_02.jpg','LA ISLA','0123456789',1);
 
 select * from usuarios;
